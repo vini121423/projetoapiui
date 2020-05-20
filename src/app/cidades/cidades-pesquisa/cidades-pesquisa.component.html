@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="ui-g">
+        <!-- Ação de pesquisa-->
+        <form autocomplete="off" (ngSubmit)="pesquisar()">
+            <div class="ui-g-12">
+                <h2>Cidades</h2>
+            </div>
+            <div class="ui-g-8 ui-fluid">
+                <label> Nome da cidade:</label>
+                <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome" />
+            </div>
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Pesquisar"></button>
+            </div>
+        </form>
+    </div>
+
+    <!--  INSTALAR O CDK NO PRIMENG DROPDOWN-->
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <p-table [value]="cidades" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
+                [lazy]="true" [responsive]="true" (onLazyLoad)="aoMudarPagina($event)" #tabela>
+                <!-- Tabela vem do component VIEWCHILD-->
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="col-id-header">#</th>
+                        <th class="col-nome-header">Nome da Cidade</th>
+                        <th class="col-estado-header">UF</th>
+                        <th class="col-acoes-header">Ações</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-cid>
+                    <tr>
+                        <td class="col-id">{{cid.id}}</td>
+                        <td class="col-nome">{{cid.nome}}</td>
+                        <td class="col-estado">{{cid.estado}}</td>
+                        <td class="col-acoes">
+                            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                                (click)="confirmarExclusao(cid)"></button>
+                        </td>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="4"> Nenhuma cidade encontrada</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+    </div>
+</div>

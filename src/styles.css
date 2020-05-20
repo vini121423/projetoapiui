@@ -1,0 +1,60 @@
+body {
+    margin:0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif, Arial;
+}
+
+label{
+    font-weight: bold;
+}
+
+.col-id-header{
+   width: 40px;
+
+}
+
+.col-id{
+    width: 40px;
+    text-align: right;
+ }
+
+
+.col-estado-header{
+    width: 50px;
+ }
+
+.col-telefone-header{
+    width: 60px;
+ }
+
+.col-telefone{
+    width: 60px;
+    text-align: left;
+}
+
+.col-estado{
+    width: 50px;
+    text-align: left;
+}
+
+.col-nome-header{
+    width:90px;
+}
+.col-nome{
+    width:90px;
+}
+
+.col-acoes-header{
+    width: 80px;
+}
+
+.col-acoes{
+    width: 80px;
+    text-align: center;
+}
+
+@media(min-width:1200px) {
+    .container {
+        width: 930px;
+        margin: 0 auto;
+    }
+}
