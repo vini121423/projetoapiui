@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CidadeFiltro, CidadesService } from '../cidades.service';
-import { LazyLoadEvent, ConfirmationService } from 'primeng/api';
+import { LazyLoadEvent, ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-cidades-pesquisa',
@@ -16,7 +16,8 @@ export class CidadesPesquisaComponent implements OnInit {
   @ViewChild('tabela', { static: true }) grid;
   constructor(
     private cidadesService: CidadesService,
-    private confirmation: ConfirmationService
+    private confirmation: ConfirmationService,
+    private messageService: MessageService
   ) { }
 
   ngOnInit() {
@@ -42,7 +43,7 @@ export class CidadesPesquisaComponent implements OnInit {
 
   confirmarExclusao(cidade: any) {
     this.confirmation.confirm({
-      message: " Deseja mesmo excluir esse registro",
+      message: 'Deseja mesmo excluir esse registro?',
       accept: () => {
         this.excluir(cidade);
       }
@@ -55,8 +56,9 @@ export class CidadesPesquisaComponent implements OnInit {
         this.pesquisar();
       }
       else {
-        this.grid.first = 1;
+        this.grid.first = 0;
       }
+      this.messageService.add({severity:'success', summary:'CONCLUIDO', detail: 'Cidade excluida com sucesso!'})
     })
   }
 

@@ -12,8 +12,9 @@ import { ClientesModule } from './clientes/clientes.module';
 import { ClientesPesquisaComponent } from './clientes/clientes-pesquisa/clientes-pesquisa.component';
 import { ClientesService } from './clientes/clientes.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService,MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'primeng/toast';
 
 const routes: Routes = [
 {path: 'cidades', component: CidadesPesquisaComponent},
@@ -30,14 +31,15 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     AppRoutingModule,
-    CoreModule, 
+    CoreModule,
+    ToastModule,
     CidadesModule,
     ClientesModule,
     ConfirmDialogModule
     
    
   ],
-  providers: [CidadesService,ClientesService,ConfirmationService],
+  providers: [CidadesService,ClientesService,ConfirmationService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
