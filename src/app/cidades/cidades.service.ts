@@ -41,7 +41,7 @@ export class CidadesService {
       });
   }
 
-  excluir(id:number): Promise<void> {
+  excluir(id: number): Promise<void> {
     return this.http.delete(`${this.cidadesUrl}/${id}`).toPromise().then(() => null);
   }
 }
