@@ -8,47 +8,47 @@ label{
 }
 
 .col-id-header{
-   width: 40px;
+   width: 10px;
 
 }
 
 .col-id{
-    width: 40px;
+    width: 10px;
     text-align: right;
  }
 
 
 .col-estado-header{
-    width: 50px;
+    width: 25px;
  }
 
 .col-telefone-header{
-    width: 60px;
+    width: 30px;
  }
 
 .col-telefone{
-    width: 60px;
+    width: 30px;
     text-align: left;
 }
 
 .col-estado{
-    width: 50px;
+    width: 25px;
     text-align: left;
 }
 
 .col-nome-header{
-    width:90px;
+    width:45px;
 }
 .col-nome{
-    width:90px;
+    width:45px;
 }
 
 .col-acoes-header{
-    width: 80px;
+    width: 20px;
 }
 
 .col-acoes{
-    width: 80px;
+    width: 20px;
     text-align: center;
 }
 
