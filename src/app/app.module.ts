@@ -15,9 +15,12 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService,MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
+import { ErrorHandlerService } from './core/error-handler.service';
+import { CidadesCadastroComponent } from './cidades/cidades-cadastro/cidades-cadastro.component';
 
 const routes: Routes = [
 {path: 'cidades', component: CidadesPesquisaComponent},
+{path: 'cidades/novo', component: CidadesCadastroComponent},
 {path: 'clientes', component: ClientesPesquisaComponent}
 ]
 
@@ -39,7 +42,7 @@ const routes: Routes = [
     
    
   ],
-  providers: [CidadesService,ClientesService,ConfirmationService,MessageService],
+  providers: [CidadesService,ClientesService,ConfirmationService,MessageService,ErrorHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

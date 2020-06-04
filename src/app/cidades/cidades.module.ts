@@ -7,9 +7,10 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
 import { FormsModule } from '@angular/forms';
+import { CidadesCadastroComponent } from './cidades-cadastro/cidades-cadastro.component';
 
 @NgModule({
-  declarations: [CidadesPesquisaComponent],
+  declarations: [CidadesPesquisaComponent, CidadesCadastroComponent],
   exports: [CidadesPesquisaComponent],
   imports: [
     CommonModule,

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CidadeFiltro, CidadesService } from '../cidades.service';
 import { LazyLoadEvent, ConfirmationService, MessageService } from 'primeng/api';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-cidades-pesquisa',
@@ -17,7 +18,8 @@ export class CidadesPesquisaComponent implements OnInit {
   constructor(
     private cidadesService: CidadesService,
     private confirmation: ConfirmationService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private errorHandler: ErrorHandlerService
   ) { }
 
   ngOnInit() {
@@ -58,10 +60,10 @@ export class CidadesPesquisaComponent implements OnInit {
       else {
         this.grid.first = 0;
       }
-      this.messageService.add({severity:'success', summary:'CONCLUIDO', detail: 'Cidade excluida com sucesso!'})
+      this.messageService.add({ severity: 'success', summary: 'CONCLUÍDO', detail: 'Cidade excluida com sucesso!' })
     })
+    .catch(erro => this.errorHandler.handle(erro));
   }
-
 }
 
 

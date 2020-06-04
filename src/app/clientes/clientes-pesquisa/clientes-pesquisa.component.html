@@ -20,7 +20,7 @@
 <div class="ui-g">
     <div class="ui-g-12">
         <p-table [value]="clientes" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
-            [lazy]="true" [responsive]="true" (onLazyLoad)="aoMudarPagina($event)">
+            [lazy]="true" [responsive]="true" (onLazyLoad)="aoMudarPagina($event)" #tabela2>
 
             <ng-template pTemplate="header">
                 <tr>
@@ -28,7 +28,6 @@
                     <th class="col-nome-header">Nome do Cliente</th>
                     <th class="col-telefone-header">Telefone</th>
                     <th class="col-id-header">#Cidade</th>
-                    <th class="col-nome-header">Cidade</th>
                     <th class="col-acoes-header">Ações</th>
                 </tr>
             </ng-template>
@@ -37,11 +36,11 @@
                     <td class="col-id">{{cli.id}}</td>
                     <td class="col-nome">{{cli.nome}}</td>
                     <td class="col-telefone">{{cli.telefone}}</td>
-                    <td class="col-id">{{cli.cidade.id}}</td>
-                    <td class="col-nome">{{cli.cidade.nome}}</td>
+                    <td class="col-id">{{cli.cidade_id}}</td>
                     <td class="col-acoes">
                         <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
-                        <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"></button>
+                        <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                            (click)="confirmarExclusao(cli)"></button>
                     </td>
 
                 </tr>

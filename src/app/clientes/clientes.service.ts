@@ -37,7 +37,7 @@ export class ClientesService {
       });
   }
 
-  excluir(id: number): Promise<void> {
+  excluir(id:number): Promise<void> {
     return this.http.delete(`${this.clientesUrl}/${id}`).toPromise().then(() => null);
   }
 }
