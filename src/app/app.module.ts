@@ -17,11 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { ErrorHandlerService } from './core/error-handler.service';
 import { CidadesCadastroComponent } from './cidades/cidades-cadastro/cidades-cadastro.component';
+import { ClientesCadastroComponent } from './clientes/clientes-cadastro/clientes-cadastro.component';
 
 const routes: Routes = [
 {path: 'cidades', component: CidadesPesquisaComponent},
 {path: 'cidades/novo', component: CidadesCadastroComponent},
-{path: 'clientes', component: ClientesPesquisaComponent}
+{path: 'clientes', component: ClientesPesquisaComponent},
+{path: 'clientes/novo', component: ClientesCadastroComponent}
 ]
 
 @NgModule({

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ClienteFiltro, ClientesService } from '../clientes.service';
 import { LazyLoadEvent, ConfirmationService, MessageService } from 'primeng/api';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-clientes-pesquisa',
@@ -18,7 +19,8 @@ export class ClientesPesquisaComponent implements OnInit {
   constructor(
     private clientesService: ClientesService,
     private confirmation: ConfirmationService,
-    private messageService: MessageService) { }
+    private messageService: MessageService,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.pesquisar();
@@ -58,5 +60,6 @@ export class ClientesPesquisaComponent implements OnInit {
       }
       this.messageService.add({ severity: 'success', summary: 'CONCLUÍDO', detail: 'Cliente excluído com sucesso!' })
     })
+    .catch(erro => this.errorHandler.handle(erro));
   }
 }
