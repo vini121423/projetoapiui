@@ -1,5 +1,5 @@
 <div class="container">
-    <form autocomplete="off">
+    <form autocomplete="off" [ngSubmit]="salvar()" [formGroup]="formulario">
         <div class="ui-g">
             <div class="ui-g-12">
                 <h1> Cadastro de Cidades</h1>
@@ -7,16 +7,24 @@
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
                 <label>Nome da Cidade</label>
-                <input pInputText type="text" name="nome">
+                <input pInputText type="text" name="nome" formControlName="nome">
+                <app-message [control]="forumlario.get(nome)" error="required" text="Informe o nome da cidade">
+                </app-message>
+                <app-message [control]="forumlario.get(nome)" error="minlength" text="Informe pelo menos três caracteres para o nome da cidade">
+                </app-message>
             </div>
 
             <div class="ui-g-12 ui-md-8 ui-fluid">
                 <label>Estado</label>
-                <input pInputText type="text" name="estado">
+                <input pInputText type="text" name="estado" formControlName="estado">
+                <app-message [control]="forumlario.get(estado)" error="required" text="Informe o estado da cidade">
+                </app-message>
+                <app-message [control]="forumlario.get(estado)" error="maxlength" text="Informe no máximo dois caracteres para o estado">
+                </app-message>
             </div>
 
             <div class="ui-g-12">
-                <button pButton type="submit" label="Salvar"></button>
+                <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
                 <button pButton type="button" label="Novo"></button>
 
                 <a routerLink="/cidades">Voltar para a Pesquisa</a>

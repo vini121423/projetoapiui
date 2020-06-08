@@ -1,5 +1,5 @@
 <div class="container">
-    <form autocomplete="off">
+    <form autocomplete="off" [ngSubmit]="salvar()" [formGroup]="formulario">
         <div class="ui-g">
             <div class="ui-g-12">
                 <h1> Cadastro de Clientes</h1>
@@ -7,26 +7,36 @@
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
                 <label> Nome do Cliente</label>
-                <input pInputText type="text" name="nome">
-            </div>
+                <input pInputText type="text" name="nome" formControlName="nome">
 
-            <div class="ui-g-12 ui-md-9 ui-fluid">
-                <label> Nome do Cliente</label>
-                <input pInputText type="text" name="nome">
+                <app-message [control]="forumlario.get(nome)" error="required" text="Informe o nome do Cliente">
+                </app-message>
+                <app-message [control]="forumlario.get(nome)" error="minlength"
+                    text="Informe o nome do cliente com tamanho válido">
+                </app-message>
             </div>
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
                 <label> Telefone</label>
-                <input pInputText type="text" name="telefone">
+                <input pInputText type="text" name="telefone" formControlName="telefone">
+
+                <app-message [control]="forumlario.get(telefone)" error="required" text="Informe o número de telefone do Cliente">
+                </app-message>
+                <app-message [control]="forumlario.get(nome)" error="maxlength"
+                    text="Informe no máximo 15 caracteres para o número de telefone">
+                </app-message>
             </div>
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
                 <label> Cidade</label>
-                <input pInputText type="number" name="cidade">
+                <input pInputText type="number" name="cidade" formControlName="cidade">
+
+                <app-message [control]="forumlario.get(cidade)" error="required" text="Informe o identificação(número) da cidade correspondente ao cliente">
+                </app-message>
             </div>
 
             <div class="ui-g-12">
-                <button pButton type="submit" label="Salvar"></button>
+                <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
                 <button pButton type="submit" label="Novo"></button>
 
                 <a routerLink="/clientes">Voltar para a pesquisa</a>

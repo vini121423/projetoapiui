@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Cliente } from '../core/model';
+
 
 
 export class ClienteFiltro {
@@ -35,6 +37,10 @@ export class ClientesService {
         }
         return resultado;
       });
+  }
+
+  adicionar(cliente: Cliente): Promise<Cliente>{
+    return this.http.post<Cliente>(this.clientesUrl, cliente).toPromise();
   }
 
   excluir(id:number): Promise<void> {

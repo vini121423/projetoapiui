@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Cidade } from '../core/model';
 
 export class CidadeFiltro {
   nome: string;
@@ -39,6 +40,10 @@ export class CidadesService {
         }
         return resultado;
       });
+  }
+
+  adicionar(cidade:Cidade): Promise<Cidade>{
+    return this.http.post<Cidade>(this.cidadesUrl, cidade).toPromise();
   }
 
   excluir(id:number): Promise<void> {
