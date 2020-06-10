@@ -42,11 +42,18 @@ export class CidadesService {
       });
   }
 
-  adicionar(cidade:Cidade): Promise<Cidade>{
+  adicionar(cidade: Cidade): Promise<Cidade> {
     return this.http.post<Cidade>(this.cidadesUrl, cidade).toPromise();
   }
 
-  excluir(id:number): Promise<void> {
+  atualizar(cidade: Cidade): Promise<Cidade> {
+    return this.http.put<Cidade>(`${this.cidadesUrl}/${cidade.id}`, cidade).toPromise().then(response => {
+      const cidadeAlterada = response;
+      return cidadeAlterada;
+    });
+  }
+
+  excluir(id: number): Promise<void> {
     return this.http.delete(`${this.cidadesUrl}/${id}`).toPromise().then(() => null);
   }
 }

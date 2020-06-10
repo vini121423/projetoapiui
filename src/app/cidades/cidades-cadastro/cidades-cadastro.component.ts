@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CidadesService } from '../cidades.service';
 import { MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
@@ -16,6 +16,7 @@ export class CidadesCadastroComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private cidadesService: CidadesService,
+    private route: ActivatedRoute,
     private messageService: MessageService,
     private router: Router,
     private errorHandler: ErrorHandlerService
@@ -23,6 +24,8 @@ export class CidadesCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.configurarFormulario();
+
+    const idcidade = this.route.snapshot.params['id'];
   }
 
   configurarFormulario() {
@@ -33,7 +36,11 @@ export class CidadesCadastroComponent implements OnInit {
     });
   }
 
-  salvar() {
+   salvar(){
+     
+   }
+
+  adicionarCidade() {
     this.cidadesService.adicionar(this.formulario.value).then(cidadeAdicionada => {
       this.messageService.add({ severity: 'success', detail: 'Cidade adicionada com sucesso!', summary: 'Concluído' })
 
@@ -41,6 +48,14 @@ export class CidadesCadastroComponent implements OnInit {
       this.router.navigate(['/cidades']);
     }).catch(erro => this.errorHandler.handle(erro));
 
+  }
+
+  atualizarCidade(){
+    this.cidadesService.atualizar(this.formulario.value).then(cidade =>{
+      this.formulario.patchValue(cidade);
+      this.messageService.add({severity:'success',detail: 'Cidade alterada com sucesso!',summary:'Concluído'});
+    })
+    .catch(erro => this.errorHandler.handle(erro));
   }
 
 }

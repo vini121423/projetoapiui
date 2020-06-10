@@ -22,8 +22,10 @@ import { ClientesCadastroComponent } from './clientes/clientes-cadastro/clientes
 const routes: Routes = [
 {path: 'cidades', component: CidadesPesquisaComponent},
 {path: 'cidades/novo', component: CidadesCadastroComponent},
+{path: 'cidades/:id', component: CidadesCadastroComponent},
 {path: 'clientes', component: ClientesPesquisaComponent},
-{path: 'clientes/novo', component: ClientesCadastroComponent}
+{path: 'clientes/novo', component: ClientesCadastroComponent},
+{path: 'clientes/:id', component: ClientesCadastroComponent}
 ]
 
 @NgModule({

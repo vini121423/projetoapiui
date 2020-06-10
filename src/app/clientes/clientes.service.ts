@@ -39,11 +39,18 @@ export class ClientesService {
       });
   }
 
-  adicionar(cliente: Cliente): Promise<Cliente>{
+  adicionar(cliente: Cliente): Promise<Cliente> {
     return this.http.post<Cliente>(this.clientesUrl, cliente).toPromise();
   }
 
-  excluir(id:number): Promise<void> {
+  atualizar(cliente: Cliente): Promise<Cliente> {
+    return this.http.put<Cliente>(`${this.clientesUrl}/{cliente.id}`, cliente).toPromise().then(response => {
+      const clienteAlterado = response;
+      return clienteAlterado;
+    });
+  }
+
+  excluir(id: number): Promise<void> {
     return this.http.delete(`${this.clientesUrl}/${id}`).toPromise().then(() => null);
   }
 }
