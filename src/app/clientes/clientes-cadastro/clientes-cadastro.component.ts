@@ -38,11 +38,11 @@ export class ClientesCadastroComponent implements OnInit {
   }
 
   
-  salvar(){
+  adicionarCliente(){
      
   }
 
-  adicionarCliente() {
+  salvar() {
     this.clienteService.adicionar(this.formulario.value).then(clienteAdicionado => {
       this.messageService.add({ severity: 'success', detail: 'Cliente adicionado com sucesso', summary: 'Concluído' });
       this.router.navigate(['/clientes']);

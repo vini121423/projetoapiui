@@ -13,6 +13,7 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 export class CidadesCadastroComponent implements OnInit {
 
   formulario: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private cidadesService: CidadesService,
@@ -36,11 +37,11 @@ export class CidadesCadastroComponent implements OnInit {
     });
   }
 
-   salvar(){
+  adicionarCidade(){
      
    }
 
-  adicionarCidade() {
+    salvar() {
     this.cidadesService.adicionar(this.formulario.value).then(cidadeAdicionada => {
       this.messageService.add({ severity: 'success', detail: 'Cidade adicionada com sucesso!', summary: 'Concluído' })
 

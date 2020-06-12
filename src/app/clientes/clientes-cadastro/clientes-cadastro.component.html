@@ -1,5 +1,5 @@
-<div class="container">
-    <form autocomplete="off" [ngSubmit]="salvar()" [formGroup]="formulario">
+﻿<div class="container">
+    <form autocomplete="off" (ngSubmit)="salvar()" [formGroup]="formulario">
         <div class="ui-g">
             <div class="ui-g-12">
                 <h1> Cadastro de Clientes</h1>
@@ -9,9 +9,9 @@
                 <label> Nome do Cliente</label>
                 <input pInputText type="text" name="nome" formControlName="nome">
 
-                <app-message [control]="forumlario.get(nome)" error="required" text="Informe o nome do Cliente">
+                <app-message [control]="formulario.get('nome')" error="required" text="Informe o nome do Cliente">
                 </app-message>
-                <app-message [control]="forumlario.get(nome)" error="minlength"
+                <app-message [control]="formulario.get('nome')" error="minlength"
                     text="Informe o nome do cliente com tamanho válido">
                 </app-message>
             </div>
@@ -20,18 +20,18 @@
                 <label> Telefone</label>
                 <input pInputText type="text" name="telefone" formControlName="telefone">
 
-                <app-message [control]="forumlario.get(telefone)" error="required" text="Informe o número de telefone do Cliente">
+                <app-message [control]="formulario.get('telefone')" error="required" text="Informe o número de telefone do Cliente">
                 </app-message>
-                <app-message [control]="forumlario.get(nome)" error="maxlength"
+                <app-message [control]="formulario.get('telefone')" error="maxlength"
                     text="Informe no máximo 15 caracteres para o número de telefone">
                 </app-message>
             </div>
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
                 <label> Cidade</label>
-                <input pInputText type="number" name="cidade" formControlName="cidade">
+                <input pInputText type="number" name="cidade_id" formControlName="cidade_id">
 
-                <app-message [control]="forumlario.get(cidade)" error="required" text="Informe o identificação(número) da cidade correspondente ao cliente">
+                <app-message [control]="formulario.get('cidade_id')" error="required" text="Informe o identificação(número) da cidade correspondente ao cliente">
                 </app-message>
             </div>
 
