@@ -26,7 +26,17 @@ export class CidadesCadastroComponent implements OnInit {
   ngOnInit() {
     this.configurarFormulario();
 
-    const idcidade = this.route.snapshot.params['id'];
+    const idCidade = this.route.snapshot.params['id'];
+
+    if (idCidade) {
+      this.carregarCidade(idCidade);
+    }
+  }
+
+  carregarCidade(id: number) {
+    this.cidadesService.bucarPorId(id).then(cidade => {
+      this.formulario.patchValue(cidade);
+    }).catch(erro => this.errorHandler.handle(erro));
   }
 
   configurarFormulario() {
@@ -37,26 +47,33 @@ export class CidadesCadastroComponent implements OnInit {
     });
   }
 
-  adicionarCidade(){
-     
-   }
-
-    salvar() {
+  adicionarCidade() {
     this.cidadesService.adicionar(this.formulario.value).then(cidadeAdicionada => {
       this.messageService.add({ severity: 'success', detail: 'Cidade adicionada com sucesso!', summary: 'Concluído' })
 
       // Manda o usuário de volta para a página de cidades //
       this.router.navigate(['/cidades']);
     }).catch(erro => this.errorHandler.handle(erro));
-
   }
 
-  atualizarCidade(){
-    this.cidadesService.atualizar(this.formulario.value).then(cidade =>{
+  get editando() {
+    return Boolean(this.formulario.get('id').value);
+  }
+
+  salvar() {
+    if (this.editando) {
+      this.atualizarCidade();
+    } else {
+      this.adicionarCidade();
+    }
+  }
+
+  atualizarCidade() {
+    this.cidadesService.atualizar(this.formulario.value).then(cidade => {
       this.formulario.patchValue(cidade);
-      this.messageService.add({severity:'success',detail: 'Cidade alterada com sucesso!',summary:'Concluído'});
+      this.messageService.add({ severity: 'success', detail: 'Cidade alterada com sucesso!', summary: 'Concluído' });
     })
-    .catch(erro => this.errorHandler.handle(erro));
+      .catch(erro => this.errorHandler.handle(erro));
   }
 
 }

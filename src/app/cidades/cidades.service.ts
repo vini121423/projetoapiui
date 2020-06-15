@@ -56,4 +56,11 @@ export class CidadesService {
   excluir(id: number): Promise<void> {
     return this.http.delete(`${this.cidadesUrl}/${id}`).toPromise().then(() => null);
   }
+
+  bucarPorId(id: Number): Promise<Cidade>{
+     return this.http.get<Cidade>(`${this.cidadesUrl}/${id}`).toPromise().then(response =>{
+        const cidade = response;
+        return cidade;
+     });
+ }
 }
