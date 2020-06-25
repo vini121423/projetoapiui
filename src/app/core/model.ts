@@ -8,5 +8,5 @@ export class Cliente {
     id: number;
     nome: string;
     telefone: string;
-    cidade_id: number;
+    cidade = new Cidade();
 }

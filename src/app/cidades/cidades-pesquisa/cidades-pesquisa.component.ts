@@ -23,7 +23,9 @@ export class CidadesPesquisaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.pesquisar();
+
   }
 
   pesquisar(pagina = 0) {
@@ -54,16 +56,15 @@ export class CidadesPesquisaComponent implements OnInit {
 
   excluir(cidade: any) {
     this.cidadesService.excluir(cidade.id).then(() => {
-      if (this.grid.first === 0) {
+      if(this.grid.first === 0) {
         this.pesquisar();
       }
-      else {
+      else{
         this.grid.first = 0;
       }
       this.messageService.add({ severity: 'success', summary: 'CONCLUÍDO', detail: 'Cidade excluida com sucesso!' })
     })
     .catch(erro => this.errorHandler.handle(erro));
   }
+
 }
-
-
