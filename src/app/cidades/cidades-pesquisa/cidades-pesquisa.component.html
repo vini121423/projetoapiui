@@ -20,7 +20,7 @@
         <div class="ui-g-12">
             <p-table [value]="cidades" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
                 [lazy]="true" [responsive]="true" (onLazyLoad)="aoMudarPagina($event)" #tabela>
-                <!-- Tabela vem do component VIEWCHILD-->
+                <!-- #Tabela vem do component VIEWCHILD-->
 
                 <ng-template pTemplate="header">
                     <tr>

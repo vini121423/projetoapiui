@@ -29,8 +29,9 @@
 
             <div class="ui-g-12 ui-md-9 ui-fluid">
                 <label> Cidade</label>
-                <input pInputText type="number" name="cidade_id" formControlName="cidade_id">
+                <p-dropdown name="cliente" placeholder="Cliente">
 
+                </p-dropdown>
                 <app-message [control]="formulario.get('cidade_id')" error="required" text="Informe o identificação(número) da cidade correspondente ao cliente">
                 </app-message>
             </div>

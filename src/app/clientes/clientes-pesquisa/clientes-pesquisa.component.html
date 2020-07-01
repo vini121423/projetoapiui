@@ -14,50 +14,54 @@
             </div>
         </form>
     </div>
-</div>
 
 
-<div class="ui-g">
-    <div class="ui-g-12">
-        <p-table [value]="clientes" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
-            [lazy]="true" [responsive]="true" (onLazyLoad)="aoMudarPagina($event)" #tabela2>
 
-            <ng-template pTemplate="header">
-                <tr>
-                    <th class="col-id-header">#</th>
-                    <th class="col-nome-header">Nome do Cliente</th>
-                    <th class="col-nome-header">Cidade</th>
-                    <th class="col-estado-header">Estado</th>
-                    <th class="col-id-header">#Cidade</th>
-                    <th class="col-telefone-header">Telefone</th>
-                    <th class="col-acoes-header">Ações</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-cli>
-                <tr>
-                    <td class="col-id">{{cli.id}}</td>
-                    <td class="col-nome">{{cli.cidade.nome}}</td>
-                    <td class="col-estado">{{cli.cidade.estado}}</td>
-                    <td class="col-id">{{cli.cidade.id}}</td>
-                    <td class="col-nome">{{cli.nome}}</td>
-                    <td class="col-telefone">{{cli.telefone}}</td>
-                    <td class="col-acoes">
-                        <a pButton icon="pi pi-pencil" [routerLink]="['/clientes', cli.id]" pTooltip="Editar" tooltipPosition="top"></a>
-                        <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                            (click)="confirmarExclusao(cli)"></button>
-                    </td>
-
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td colspan="7"> Nenhum cliente encontrado</td>
-                </tr>
-            </ng-template>
-        </p-table>
-
+    <div class="ui-g">
         <div class="ui-g-12">
-            <a pButton label="Novo Cliente" routerLink="/clientes/novo"></a>
+            <p-table [value]="clientes" [paginator]="true" [rows]="filtro.itensPorPagina"
+                [totalRecords]="totalRegistros" [lazy]="true" [responsive]="true" (onLazyLoad)="aoMudarPagina($event)"
+                #tabela2>
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="col-id-header">#</th>
+                        <th class="col-nome-header">Nome do Cliente</th>
+                        <th class="col-telefone-header">Telefone</th>
+                        <th class="col-id-header">#Cidade</th>
+                        <th class="col-nome-header">Cidade</th>
+                        <th class="col-estado-header">Estado</th>
+                        <th class="col-acoes-header">Ações</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-cli>
+                    <tr>
+                        <td class="col-id">{{cli.id}}</td>
+                        <td class="col-nome">{{cli.nome}}</td>
+                        <td class="col-telefone">{{cli.telefone}}</td>
+                        <td class="col-id">{{cli.cidade.id}}</td>
+                        <td class="col-nome">{{cli.cidade.nome}}</td>
+                        <td class="col-estado">{{cli.cidade.estado}}</td>
+
+                        <td class="col-acoes">
+                            <a pButton icon="pi pi-pencil" [routerLink]="['/clientes', cli.id]" pTooltip="Editar"
+                                tooltipPosition="top"></a>
+                            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
+                                (click)="confirmarExclusao(cli)"></button>
+                        </td>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td colspan="7"> Nenhum cliente encontrado</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+
+            <div class="ui-g-12">
+                <a pButton label="Novo Cliente" routerLink="/clientes/novo"></a>
+            </div>
         </div>
     </div>
 </div>

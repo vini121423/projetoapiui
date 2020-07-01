@@ -47,14 +47,7 @@ export class CidadesCadastroComponent implements OnInit {
     });
   }
 
-  adicionarCidade() {
-    this.cidadesService.adicionar(this.formulario.value).then(cidadeAdicionada => {
-      this.messageService.add({ severity: 'success', detail: 'Cidade adicionada com sucesso!', summary: 'Concluído' })
-
-      // Manda o usuário de volta para a página de cidades //
-      this.router.navigate(['/cidades']);
-    }).catch(erro => this.errorHandler.handle(erro));
-  }
+  
 
   get editando() {
     return Boolean(this.formulario.get('id').value);
@@ -74,6 +67,15 @@ export class CidadesCadastroComponent implements OnInit {
       this.messageService.add({ severity: 'success', detail: 'Cidade alterada com sucesso!', summary: 'Concluído' });
     })
       .catch(erro => this.errorHandler.handle(erro));
+  }
+
+  adicionarCidade() {
+    this.cidadesService.adicionar(this.formulario.value).then(cidadeAdicionada => {
+      this.messageService.add({ severity: 'success', detail: 'Cidade adicionada com sucesso!', summary: 'Concluído' })
+
+      // Manda o usuário de volta para a página de cidades //
+      this.router.navigate(['/cidades']);
+    }).catch(erro => this.errorHandler.handle(erro));
   }
 
 }
