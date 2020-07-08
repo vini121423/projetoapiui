@@ -53,4 +53,12 @@ export class ClientesService {
   excluir(id: number): Promise<void> {
     return this.http.delete(`${this.clientesUrl}/${id}`).toPromise().then(() => null);
   }
+
+  bucarPorId(id: Number): Promise<Cliente>{
+    return this.http.get<Cliente>(`${this.clientesUrl}/${id}`).toPromise().then(response =>{
+       const cliente = response;
+       return cliente;
+    });
+}
+
 }

@@ -4,6 +4,7 @@ import { ClientesService } from '../clientes.service';
 import { MessageService } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import { CidadesService } from 'src/app/cidades/cidades.service';
 
 @Component({
   selector: 'app-clientes-cadastro',
@@ -11,11 +12,15 @@ import { ErrorHandlerService } from 'src/app/core/error-handler.service';
   styleUrls: ['./clientes-cadastro.component.css']
 })
 export class ClientesCadastroComponent implements OnInit {
-
+  clientes = [];
+  cidades = [];
   formulario: FormGroup;
+
+
   constructor(
     private formBuilder: FormBuilder,
     private clienteService: ClientesService,
+    private cidadeService: CidadesService,
     private route: ActivatedRoute,
     private messageService: MessageService,
     private router: Router,
@@ -31,13 +36,27 @@ export class ClientesCadastroComponent implements OnInit {
   configurarFormulario() {
     this.formulario = this.formBuilder.group({
       id: [],
-      nome: [null, [Validators.required], [Validators.minLength(5)]],
-      telefone: [null, [Validators.required], [Validators.maxLength(15)]],
-      cidade_id: [null,[Validators.required]]
+      nome: [null, [Validators.required, Validators.minLength(5)]],
+      telefone: [null, [Validators.required]],
+      cidade:this.formBuilder.group({
+        id: [null, Validators.required],
+        nome:[]
+      })
+ 
     });
   }
 
-  
+  carregarCidades(){
+   return this.cidadeService.listarTodasCidades().then(cidades =>{
+      this.cidades = cidades
+      .map(c => ({
+        label: c.nome,
+        value: c.id
+      }))
+   }).catch(erro => this.errorHandler.handle(erro));
+  }
+
+
   adicionarCliente(){
      
   }

@@ -63,4 +63,8 @@ export class CidadesService {
         return cidade;
      });
  }
+
+ listarTodasCidades(): Promise<Cidade[]>{
+   return this.http.get<Cidade[]>(`${this.cidadesUrl}/todas`).toPromise();
+ }
 }
