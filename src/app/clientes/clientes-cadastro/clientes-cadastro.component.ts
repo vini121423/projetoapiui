@@ -30,7 +30,19 @@ export class ClientesCadastroComponent implements OnInit {
 
   ngOnInit() {
     this.configurarFormulario();
-    const idcliente = this.route.snapshot.params['id'];
+    this.carregarCidades();
+
+    const idCliente = this.route.snapshot.params['id'];
+
+    if (idCliente) {
+      this.carregarCliente(idCliente);
+    }
+  }
+
+  carregarCliente(id: number) {
+    this.clienteService.bucarPorId(id).then(cliente => {
+      this.formulario.patchValue(cliente);
+    }).catch(erro => this.errorHandler.handle(erro));
   }
 
   configurarFormulario() {
@@ -56,16 +68,16 @@ export class ClientesCadastroComponent implements OnInit {
    }).catch(erro => this.errorHandler.handle(erro));
   }
 
-
-  adicionarCliente(){
-     
+   get editando() {
+    return Boolean(this.formulario.get('id').value);
   }
 
   salvar() {
-    this.clienteService.adicionar(this.formulario.value).then(clienteAdicionado => {
-      this.messageService.add({ severity: 'success', detail: 'Cliente adicionado com sucesso', summary: 'Concluído' });
-      this.router.navigate(['/clientes']);
-    }).catch(erro => this.errorHandler.handle(erro));
+    if (this.editando) {
+      this.atualizarCliente();
+    } else {
+      this.adicionarCliente();
+    }
   }
 
   atualizarCliente(){
@@ -76,4 +88,11 @@ export class ClientesCadastroComponent implements OnInit {
     })
   }
 
-}
+  adicionarCliente(){
+    this.clienteService.adicionar(this.formulario.value).then(clienteAdicionado => {
+      this.messageService.add({ severity: 'success', detail: 'Cliente adicionado com sucesso!', summary: 'Concluído' })
+
+      this.router.navigate(['/clientes']);
+    }).catch(erro => this.errorHandler.handle(erro));
+  }
+  }
