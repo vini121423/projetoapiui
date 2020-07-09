@@ -49,7 +49,7 @@ export class ClientesCadastroComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       id: [],
       nome: [null, [Validators.required, Validators.minLength(5)]],
-      telefone: [null, [Validators.required]],
+      telefone: [null, Validators.required],
       cidade:this.formBuilder.group({
         id: [null, Validators.required],
         nome:[]

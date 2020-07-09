@@ -29,7 +29,7 @@
                 <p-dropdown name="cliente" placeholder="Selecione a Cidade" [options]="cidades" [filter]="true" formControlName="id">
 
                 </p-dropdown>
-                <app-message [control]="formulario.get('id')" error="required" text="Informe a Cidade">
+                <app-message [control]="formulario.get('cidade.id')" error="required" text="Informe a Cidade">
                 </app-message>
             </div>
 
