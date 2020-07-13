@@ -44,7 +44,7 @@ export class ClientesService {
   }
 
   atualizar(cliente: Cliente): Promise<Cliente> {
-    return this.http.put<Cliente>(`${this.clientesUrl}/{cliente.id}`, cliente).toPromise().then(response => {
+    return this.http.put<Cliente>(`${this.clientesUrl}/${cliente.id}`, cliente).toPromise().then(response => {
       const clienteAlterado = response;
       return clienteAlterado;
     });

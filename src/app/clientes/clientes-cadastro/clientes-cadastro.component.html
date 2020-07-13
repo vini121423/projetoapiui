@@ -26,7 +26,7 @@
 
             <div class="ui-g-12 ui-md-9 ui-fluid" formGroupName="cidade">
                 <label> Cidade</label>
-                <p-dropdown name="cliente" placeholder="Selecione a Cidade" [options]="cidades" [filter]="true" formControlName="id">
+                <p-dropdown name="clientes" placeholder="Selecione a Cidade" [options]="cidades" [filter]="true" formControlName="id">
 
                 </p-dropdown>
                 <app-message [control]="formulario.get('cidade.id')" error="required" text="Informe a Cidade">
