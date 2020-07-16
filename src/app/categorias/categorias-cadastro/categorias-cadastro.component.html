@@ -1,0 +1,23 @@
+<div class="container">
+    <form autocomplete="off" (ngSubmit)="salvar()" [formGroup]="formulario">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h1> Cadastrar Categoria</h1>
+            </div>
+
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <label> Nome</label>
+                <input pInputText type="text" name="nome" formControlName="nome">
+
+                  <app-message [control]="formulario.get('nome')" error="required" text="Informe o nome da categoria!"></app-message>
+                  <app-message [control]="formulario.get('nome')" error="maxlength" text="Informe no máximo 20 caracteres para o nome da categoria"></app-message>
+            </div>
+
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
+                <button pButton type="button" label="Nova"></button>
+                <a routerLink="/categorias">Voltar para a Pesquisa</a>
+            </div>
+        </div>
+    </form>
+</div>

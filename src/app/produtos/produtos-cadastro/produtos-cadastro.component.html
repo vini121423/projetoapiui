@@ -1,0 +1,38 @@
+<div class="container">
+    <form autocomplete="off" (ngSubmit)="salvar()" [formGroup]="formulario">
+        <div class="ui-g">
+            <div class="ui-g-12">
+                <h1> Cadastrar Produto:</h1>
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <label> Nome </label>
+                <input pInputText type="text" name="nome" formControlName="nome">
+                <app-message [control]="formulario.get('nome')" error="required" text="Informe o nome do produto!">
+                </app-message>
+                <app-message [control]="formulario.get('nome')" error="maxlength"
+                    text="Informe no máximo 100 caracteres para o nome do produto"></app-message>
+            </div>
+
+            <div class="ui-g-12 ui-md-9 ui-fluid">
+                <label>Preço</label>
+                <input pInputText type="number" name="preco" formControlName="preco">
+                <app-message [control]="formulario.get('preco')" error="required" text="Informe o preço do produto">
+                </app-message>
+            </div>
+
+
+            <div class="ui-g-12 ui-md-9 ui-fluid" formGroupName="categoria">
+                <label>Categoria</label>
+                <p-dropdown name="categorias" placeholder="Selecione a Categoria" [options]="categorias" [filter]="true" formControlName="id"> </p-dropdown>
+                <app-message [control]="formulario.get('categoria.id')" error="required"
+                    text="Informe a identificação do produto"></app-message>
+            </div>
+
+            <div class="ui-g-12">
+                <button pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
+                <button pButton type="submit" label="Novo"></button>
+                <a routerLink="/produtos">Voltar para a Pesquisa</a>
+            </div>
+        </div>
+    </form>
+</div>

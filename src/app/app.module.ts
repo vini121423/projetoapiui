@@ -18,6 +18,16 @@ import { ToastModule } from 'primeng/toast';
 import { ErrorHandlerService } from './core/error-handler.service';
 import { CidadesCadastroComponent } from './cidades/cidades-cadastro/cidades-cadastro.component';
 import { ClientesCadastroComponent } from './clientes/clientes-cadastro/clientes-cadastro.component';
+import { ProdutosCadastroComponent } from './produtos/produtos-cadastro/produtos-cadastro.component';
+import { CategoriasCadastroComponent } from './categorias/categorias-cadastro/categorias-cadastro.component';
+import { ProdutosService } from './produtos/produtos.service';
+import { CategoriasService } from './categorias/categorias.service';
+import { CategoriasPesquisaComponent } from './categorias/categorias-pesquisa/categorias-pesquisa.component';
+import { ProdutosPesquisaComponent } from './produtos/produtos-pesquisa/produtos-pesquisa.component';
+import { CategoriasModule } from './categorias/categorias.module';
+import { ProdutosModule } from './produtos/produtos.module';
+
+
 
 const routes: Routes = [
 {path: 'cidades', component: CidadesPesquisaComponent},
@@ -25,7 +35,13 @@ const routes: Routes = [
 {path: 'cidades/:id', component: CidadesCadastroComponent},
 {path: 'clientes', component: ClientesPesquisaComponent},
 {path: 'clientes/novo', component: ClientesCadastroComponent},
-{path: 'clientes/:id', component: ClientesCadastroComponent}
+{path: 'clientes/:id', component: ClientesCadastroComponent},
+{path: 'categorias', component: CategoriasPesquisaComponent},
+{path: 'categorias/nova', component: CategoriasCadastroComponent},
+{path: 'categorias/:id', component: CategoriasCadastroComponent},
+{path: 'produtos/novo', component: ProdutosCadastroComponent},
+{path: 'produtos/:id', component: ProdutosCadastroComponent},
+{path: 'produtos', component: ProdutosPesquisaComponent}
 ]
 
 @NgModule({
@@ -42,11 +58,13 @@ const routes: Routes = [
     ToastModule,
     CidadesModule,
     ClientesModule,
+	CategoriasModule,
+	ProdutosModule,
     ConfirmDialogModule
     
    
   ],
-  providers: [CidadesService,ClientesService,ConfirmationService,MessageService,ErrorHandlerService],
+  providers: [CidadesService,ClientesService,CategoriasService,ProdutosService,ConfirmationService,MessageService,ErrorHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

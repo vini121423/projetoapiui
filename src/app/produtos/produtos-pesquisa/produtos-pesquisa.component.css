@@ -1,0 +1,23 @@
+.id{
+   width:50px;
+}
+
+.nome{
+    width:100px;
+}
+
+.imagem{
+    width:40px;
+}
+
+.preco{
+    width:60px;
+}
+
+.acoes{
+    width:80px;
+}
+
+.dist{
+    margin-right: 2px;
+}
