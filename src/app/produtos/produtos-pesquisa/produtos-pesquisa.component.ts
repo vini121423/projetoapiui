@@ -1,7 +1,7 @@
+import { ErrorHandlerService } from '../../core/error-handler.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ProdutoFiltro, ProdutosService } from '../produtos.service';
 import { LazyLoadEvent, ConfirmationService, MessageService } from 'primeng/api';
-import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-produtos-pesquisa',

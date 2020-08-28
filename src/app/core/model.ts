@@ -22,3 +22,11 @@ export class Produto{
     preco:number;
     categoria = new Categoria();
 }
+
+
+export class Pedido{
+    id: number;
+    datapedido:date;
+	cliente = new Cliente();
+    preco:number;
+}
