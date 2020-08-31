@@ -1,3 +1,5 @@
+import { PedidosModule } from './pedidos/pedidos.module';
+import { PedidosPesquisaComponent } from './pedidos/pedidos-pesquisa/pedidos-pesquisa.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,7 +14,7 @@ import { ClientesModule } from './clientes/clientes.module';
 import { ClientesPesquisaComponent } from './clientes/clientes-pesquisa/clientes-pesquisa.component';
 import { ClientesService } from './clientes/clientes.service';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService,MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule } from 'primeng/toast';
 import { ErrorHandlerService } from './core/error-handler.service';
@@ -26,22 +28,24 @@ import { CategoriasPesquisaComponent } from './categorias/categorias-pesquisa/ca
 import { ProdutosPesquisaComponent } from './produtos/produtos-pesquisa/produtos-pesquisa.component';
 import { CategoriasModule } from './categorias/categorias.module';
 import { ProdutosModule } from './produtos/produtos.module';
+import { PedidosService } from './pedidos/pedidos.service';
 
 
 
 const routes: Routes = [
-{path: 'cidades', component: CidadesPesquisaComponent},
-{path: 'cidades/novo', component: CidadesCadastroComponent},
-{path: 'cidades/:id', component: CidadesCadastroComponent},
-{path: 'clientes', component: ClientesPesquisaComponent},
-{path: 'clientes/novo', component: ClientesCadastroComponent},
-{path: 'clientes/:id', component: ClientesCadastroComponent},
-{path: 'categorias', component: CategoriasPesquisaComponent},
-{path: 'categorias/nova', component: CategoriasCadastroComponent},
-{path: 'categorias/:id', component: CategoriasCadastroComponent},
-{path: 'produtos/novo', component: ProdutosCadastroComponent},
-{path: 'produtos/:id', component: ProdutosCadastroComponent},
-{path: 'produtos', component: ProdutosPesquisaComponent}
+  { path: 'cidades', component: CidadesPesquisaComponent },
+  { path: 'cidades/novo', component: CidadesCadastroComponent },
+  { path: 'cidades/:id', component: CidadesCadastroComponent },
+  { path: 'clientes', component: ClientesPesquisaComponent },
+  { path: 'clientes/novo', component: ClientesCadastroComponent },
+  { path: 'clientes/:id', component: ClientesCadastroComponent },
+  { path: 'categorias', component: CategoriasPesquisaComponent },
+  { path: 'categorias/nova', component: CategoriasCadastroComponent },
+  { path: 'categorias/:id', component: CategoriasCadastroComponent },
+  { path: 'produtos/novo', component: ProdutosCadastroComponent },
+  { path: 'produtos/:id', component: ProdutosCadastroComponent },
+  { path: 'produtos', component: ProdutosPesquisaComponent },
+  { path: 'pedidos', component: PedidosPesquisaComponent }
 ]
 
 @NgModule({
@@ -58,13 +62,14 @@ const routes: Routes = [
     ToastModule,
     CidadesModule,
     ClientesModule,
-	CategoriasModule,
-	ProdutosModule,
+    CategoriasModule,
+    ProdutosModule,
+    PedidosModule,
     ConfirmDialogModule
-    
-   
+
+
   ],
-  providers: [CidadesService,ClientesService,CategoriasService,ProdutosService,ConfirmationService,MessageService,ErrorHandlerService],
+  providers: [PedidosService, CidadesService, ClientesService, CategoriasService, ProdutosService, ConfirmationService, MessageService, ErrorHandlerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

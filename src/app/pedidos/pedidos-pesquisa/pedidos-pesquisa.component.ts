@@ -13,7 +13,7 @@ export class PedidosPesquisaComponent implements OnInit {
   filtro = new PedidoFiltro();
   pedidos = [];
 
-  @ViewChild('tabela', { static: true }) grid;
+  @ViewChild('tabela6', { static: true }) grid;
   constructor(private pedidoService: PedidosService,
     private confirm: ConfirmationService,
     private msg: MessageService,
@@ -37,7 +37,7 @@ export class PedidosPesquisaComponent implements OnInit {
 
   confirmExclusao(produto: any) {
     this.confirm.confirm({
-      message: 'Tem certeza que deseja excluir esse registro?',
+      message: 'Tem certeza que deseja excluir esse pedido? A ação não poderá ser desfeita',
       accept: () => {
         this.excluir(produto);
       }

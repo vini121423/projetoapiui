@@ -11,22 +11,31 @@ export class Cliente {
     cidade = new Cidade();
 }
 
-export class Categoria{
-     id: number;
-     nome: string;
+export class Categoria {
+    id: number;
+    nome: string;
 }
 
-export class Produto{
+export class Produto {
     id: number;
-    nome:string;
-    preco:number;
+    nome: string;
+    preco: number;
     categoria = new Categoria();
 }
 
 
-export class Pedido{
+export class Pedido {
     id: number;
-    datapedido:date;
-	cliente = new Cliente();
-    preco:number;
+    datapedido: Date;
+    cliente = new Cliente();
+    valorpedido: number;
+}
+
+export class Itempedido {
+    id: number;
+    produto = new Produto();
+    cliente = new Cliente();
+    qtdeitem: number;
+    valorunitario: number;
+    totalitem: number;
 }

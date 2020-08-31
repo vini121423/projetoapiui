@@ -1,58 +1,56 @@
 body {
-    margin:0;
+    margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif, Arial;
 }
 
-label{
+label {
     font-weight: bold;
 }
 
-.col-id-header{
-   width: 10px;
-
+.col-id-header {
+    width: 10px;
 }
 
-.col-id{
+.col-id {
     width: 10px;
     text-align: right;
- }
+}
 
-
-.col-estado-header{
+.col-estado-header {
     width: 25px;
- }
+}
 
-.col-telefone-header{
+.col-telefone-header {
     width: 30px;
- }
+}
 
-.col-telefone{
+.col-telefone {
     width: 30px;
     text-align: left;
 }
 
-.col-estado{
+.col-estado {
     width: 25px;
     text-align: left;
 }
 
-.col-nome-header{
-    width:45px;
+.col-nome-header {
+    width: 45px;
 }
-.col-nome{
-    width:45px;
-}
-
-.col-acoes-header{
-    width: 20px;
+.col-nome {
+    width: 45px;
 }
 
-.col-acoes{
-    width: 20px;
+.col-acoes-header {
+    width: 25px;
+}
+
+.col-acoes {
+    width: 25px;
     text-align: center;
 }
 
-@media(min-width:1200px) {
+@media (min-width: 1200px) {
     .container {
         width: 930px;
         margin: 0 auto;
