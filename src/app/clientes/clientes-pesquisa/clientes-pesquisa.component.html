@@ -45,9 +45,9 @@
 
                         <td class="col-acoes">
                             <a pButton icon="pi pi-pencil" [routerLink]="['/clientes', cli.id]" pTooltip="Editar"
-                                tooltipPosition="top"></a>
+                                tooltipPosition="top" class="ui-button-success"></a>
                             <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                                (click)="confirmarExclusao(cli)"></button>
+                                (click)="confirmarExclusao(cli)" class="ui-button-danger dist"></button>
                         </td>
 
                     </tr>

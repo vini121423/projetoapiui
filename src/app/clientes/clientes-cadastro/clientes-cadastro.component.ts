@@ -50,25 +50,25 @@ export class ClientesCadastroComponent implements OnInit {
       id: [],
       nome: [null, [Validators.required, Validators.minLength(5)]],
       telefone: [null, Validators.required],
-      cidade:this.formBuilder.group({
+      cidade: this.formBuilder.group({
         id: [null, Validators.required],
-        nome:[]
+        nome: []
       })
- 
+
     });
   }
 
-  carregarCidades(){
-   return this.cidadeService.listarTodasCidades().then(cidades =>{
+  carregarCidades() {
+    return this.cidadeService.listarTodasCidades().then(cidades => {
       this.cidades = cidades
-      .map(c => ({
-        label: c.nome,
-        value: c.id
-      }))
-   }).catch(erro => this.errorHandler.handle(erro));
+        .map(c => ({
+          label: c.nome,
+          value: c.id
+        }))
+    }).catch(erro => this.errorHandler.handle(erro));
   }
 
-   get editando() {
+  get editando() {
     return Boolean(this.formulario.get('id').value);
   }
 
@@ -80,19 +80,19 @@ export class ClientesCadastroComponent implements OnInit {
     }
   }
 
-  atualizarCliente(){
-    this.clienteService.atualizar(this.formulario.value).then(cliente =>{
+  atualizarCliente() {
+    this.clienteService.atualizar(this.formulario.value).then(cliente => {
       this.formulario.patchValue(cliente);
-      this.messageService.add({severity: 'success',detail:'Cliente alterado com sucesso!',summary:'Concluído'});
+      this.messageService.add({ severity: 'success', detail: 'Cliente alterado com sucesso!', summary: 'Concluído' });
 
     })
   }
 
-  adicionarCliente(){
+  adicionarCliente() {
     this.clienteService.adicionar(this.formulario.value).then(clienteAdicionado => {
       this.messageService.add({ severity: 'success', detail: 'Cliente adicionado com sucesso!', summary: 'Concluído' })
 
       this.router.navigate(['/clientes']);
     }).catch(erro => this.errorHandler.handle(erro));
   }
-  }
+}

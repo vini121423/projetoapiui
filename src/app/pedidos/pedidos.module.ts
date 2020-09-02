@@ -9,6 +9,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { CalendarModule } from 'primeng/calendar';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SharedModule } from '../shared/shared.module';
     TooltipModule,
     ReactiveFormsModule,
     SharedModule,
+    CalendarModule,
     DropdownModule
   ]
 })

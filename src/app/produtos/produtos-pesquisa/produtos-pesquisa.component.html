@@ -36,17 +36,17 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-prod>
                     <tr>
-                        <th class="id">{{prod.id}}</th>
-                        <th class="nome">{{prod.nome}}</th>
-                        <th class="preco">{{prod.preco}}</th>
-                        <th class="id">{{prod.categoria.id}}</th>
-                        <th class="nome">{{prod.categoria.nome}}</th>
-                        <th class="acoes">
+                        <td class="id">{{prod.id}}</td>
+                        <td class="nome">{{prod.nome}}</td>
+                        <td class="preco">{{prod.preco}}</td>
+                        <td class="id">{{prod.categoria.id}}</td>
+                        <td class="nome">{{prod.categoria.nome}}</td>
+                        <td class="acoes">
                             <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
                                 class="ui-button-success dist" [routerLink]="['/produtos',prod.id]"></a>
                             <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
                                 class="ui-button-danger" (click)="confirmarExclusao(prod)"></button>
-                        </th>
+                        </td>
                     </tr>
                 </ng-template>
                 <ng-template>

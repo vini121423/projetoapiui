@@ -13,7 +13,7 @@ label {
 
 .col-id {
     width: 10px;
-    text-align: right;
+    text-align: center;
 }
 
 .col-estado-header {
@@ -26,7 +26,7 @@ label {
 
 .col-telefone {
     width: 30px;
-    text-align: left;
+    text-align: center;
 }
 
 .col-estado {
@@ -39,6 +39,7 @@ label {
 }
 .col-nome {
     width: 45px;
+	text-align: center;
 }
 
 .col-acoes-header {
@@ -48,6 +49,19 @@ label {
 .col-acoes {
     width: 25px;
     text-align: center;
+}
+
+.col-preco-header{
+  width:25px;	
+}
+
+.col-preco{
+   width:25px;	
+   text-align: center;
+}
+
+#dist{
+    margin-right: 2px;
 }
 
 @media (min-width: 1200px) {

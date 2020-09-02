@@ -4,9 +4,17 @@
             <div class="ui-g-12">
                 <h2>Pedidos</h2>
             </div>
-            <div class="ui-g-8 ui-fluid">
-                <label>Pedido:</label>
-                <input type="text" placeholder="Digite seu pedido" name="nome" pInputText [(ngModel)]="filtro.nome" />
+            <div class="ui-g-4 ui-fluid">
+                <label>Nome:</label>
+                <input type="text" name="nome" pInputText [(ngModel)]="filtro.nome" />
+            </div>
+             <div class="ui-g-4 ui-fluid">
+                <label>De:</label>
+                <p-calendar [(ngModel)]="filtro.datapedidoDe" name="datapedidoDe"></p-calendar>
+            </div>
+            <div class="ui-g-4 ui-fluid">
+                <label>Até:</label>
+                <p-calendar [(ngModel)]="filtro.datapedidoAte" name="datapedidoAte"></p-calendar>
             </div>
             <div class="ui-g-12">
                 <button pButton type="submit" label="Pesquisar"></button>
@@ -25,7 +33,7 @@
                         <th class="col-telefone-header">Telefone</th>
                         <th class="col-nome-header">Cidade</th>
                         <th class="col-nome-header">Data do Pedido</th>
-                        <th class="col-nome-header">Preço</th>
+                        <th class="col-preco-header">Preço</th>
                         <th class="col-acoes-header">Ações</th>
                     </tr>
                 </ng-template>
@@ -33,14 +41,15 @@
                     <tr>
                         <td class="col-id">{{pedido.id}}</td>
                         <td class="col-nome">{{pedido.cliente.nome}}</td>
-                        <td class="col-nome">{{pedido.cliente.telefone}}</td>
+                        <td class="col-telefone">{{pedido.cliente.telefone}}</td>
                         <td class="col-nome">{{pedido.cliente.cidade.nome}}</td>
                         <td class="col-nome">{{pedido.datapedido}}</td>
-                        <td class="col-nome">R${{pedido.valorpedido}}</td>
+                        <td class="col-preco">R$ {{pedido.valorpedido}}</td>
                         <td class="col-acoes">
-                            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                            <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
+                                class="ui-button-success"></a>
                             <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                                (click)="confirmExclusao(pedido)"></button>
+                                (click)="confirmExclusao(pedido)" class="ui-button-danger" id="dist"></button>
                         </td>
                     </tr>
                 </ng-template>

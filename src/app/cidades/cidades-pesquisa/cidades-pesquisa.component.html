@@ -36,9 +36,10 @@
                         <td class="col-nome">{{cid.nome}}</td>
                         <td class="col-estado">{{cid.estado}}</td>
                         <td class="col-acoes">
-                            <a pButton [routerLink]="['/cidades', cid.id]" icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"></a>
+                            <a pButton [routerLink]="['/cidades', cid.id]" icon="pi pi-pencil" pTooltip="Editar"
+                                tooltipPosition="top" class="ui-button-success"></a>
                             <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
-                                (click)="confirmarExclusao(cid)"></button>
+                                class="ui-button-danger dist" (click)="confirmarExclusao(cid)"></button>
                         </td>
 
                     </tr>
@@ -51,7 +52,7 @@
             </p-table>
 
             <div class="ui-g-12">
-                <a pButton label="Nova Cidade" routerLink="/cidades/novo"></a> 
+                <a pButton label="Nova Cidade" routerLink="/cidades/novo"></a>
             </div>
         </div>
 
