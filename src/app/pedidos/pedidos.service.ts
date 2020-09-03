@@ -32,12 +32,14 @@ export class PedidosService {
       params = params.append('nome', filtro.nome)
     }
 
+    /*
     if (filtro.datapedidoDe){
       params = params.append('datapedidoDe', filtro.datapedidoDe.toString())
     }
     if (filtro.datapedidoAte) {
       params = params.append('datapedidoAte', filtro.datapedidoAte.toString())
     }
+    */
 
     return this.httpClient.get<any>(`${this.pedidosUrl}`, { params }).toPromise().then(response => {
       const pedidos = response.content;
