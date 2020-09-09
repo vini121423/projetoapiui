@@ -13,13 +13,30 @@ export class PedidosPesquisaComponent implements OnInit {
   filtro = new PedidoFiltro();
   pedidos = [];
 
+  pt: any;
+  
   @ViewChild('tabela6', { static: true }) grid;
   constructor(private pedidoService: PedidosService,
     private confirm: ConfirmationService,
     private msg: MessageService,
     private errorHandler: ErrorHandlerService) { }
 
-  ngOnInit() { this.pesquisar(); }
+  ngOnInit() { 
+  this.pesquisar(); 
+    
+  this.pt = {
+  firstDayOfWeek: 0,
+  dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+  dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+  dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
+  monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
+    'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+  monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+  today: 'Hoje',
+  clear: 'Limpar'
+};
+  
+  }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;

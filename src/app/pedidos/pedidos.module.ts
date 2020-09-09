@@ -10,7 +10,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { CalendarModule } from 'primeng/calendar';
-
+import {AutoCompleteModule} from 'primeng/autocomplete';
+import {PanelModule} from 'primeng/panel';
 
 @NgModule({
   declarations: [PedidosPesquisaComponent],
@@ -26,7 +27,9 @@ import { CalendarModule } from 'primeng/calendar';
     ReactiveFormsModule,
     SharedModule,
     CalendarModule,
-    DropdownModule
+    DropdownModule,
+	AutoCompleteModule,
+	PanelModule
   ]
 })
 export class PedidosModule { }
