@@ -12,7 +12,10 @@ import { FormControl } from '@angular/forms';
     .ui-message-error{
       margin:0;
       margin-top:4px;
-
+	  border-radius:20px;
+	  padding:5px;
+	  text-align:center;
+	  font-weight:bold;
     }
   `]
 })

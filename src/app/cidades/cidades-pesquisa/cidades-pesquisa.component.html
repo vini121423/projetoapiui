@@ -10,7 +10,7 @@
                 <input type="text" pInputText name="nome" [(ngModel)]="filtro.nome" />
             </div>
             <div class="ui-g-12">
-                <button pButton type="submit" label="Pesquisar"></button>
+                <button pButton type="submit" label="Pesquisar" icon="pi pi-search" iconPos="right"></button>
             </div>
         </form>
     </div>
@@ -52,7 +52,7 @@
             </p-table>
 
             <div class="ui-g-12">
-                <a pButton label="Nova Cidade" routerLink="/cidades/novo"></a>
+                <a pButton label="Nova Cidade" class="ui-button-success" icon="pi pi-plus" iconPos="left" routerLink="/cidades/novo"></a>
             </div>
         </div>
 
