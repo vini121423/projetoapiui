@@ -24,8 +24,6 @@
 
     <div class="ui-g">
         <div class="ui-g-12">
-		  <p-panel header="Todos os Pedidos">
-		    <button pButton class="ui-button-danger button-dist" label="Criar Pedido" icon="pi pi-plus" iconPos="right"></button>
             <p-table [value]="pedidos" [paginator]="true" [rows]="filtro.itensPorPagina" [totalRecords]="totalRegistros"
                 [lazy]="true" [responsive]="true" (onLazyLoad)="mudarPagina($event)" #tabela6>
                 <ng-template pTemplate="header">
@@ -61,15 +59,14 @@
                     </tr>
                 </ng-template>
             </p-table>
-			</p-panel>
+			
         </div>
     </div>
 	
 	<div class="ui-g">
-	 <div class="ui-g-4">
-	    <button pButton class="ui-button-success" label="Salvar" icon="pi pi-save" iconPos="left"></button>
-	    <button pButton class="ui-button-warning" label="Voltar ao Menu" icon="pi pi-step-backward" iconPos="left"></button>
-	 </div>
+	 <div class="ui-g-12">
+                <a pButton label="Novo Pedido" class="ui-button-success" icon="pi pi-plus" iconPos="left" routerLink="/pedidos/novo"></a>
+      </div>
 	</div>
 	
 	

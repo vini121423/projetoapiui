@@ -12,9 +12,10 @@ import { SharedModule } from '../shared/shared.module';
 import { CalendarModule } from 'primeng/calendar';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {PanelModule} from 'primeng/panel';
+import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
 
 @NgModule({
-  declarations: [PedidosPesquisaComponent],
+  declarations: [PedidosPesquisaComponent, PedidosCadastroComponent],
   exports:[PedidosPesquisaComponent],
   imports: [
     CommonModule,

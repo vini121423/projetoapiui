@@ -29,6 +29,7 @@ import { ProdutosPesquisaComponent } from './produtos/produtos-pesquisa/produtos
 import { CategoriasModule } from './categorias/categorias.module';
 import { ProdutosModule } from './produtos/produtos.module';
 import { PedidosService } from './pedidos/pedidos.service';
+import { PedidosCadastroComponent } from './pedidos/pedidos-cadastro/pedidos-cadastro.component';
 
 
 
@@ -45,7 +46,8 @@ const routes: Routes = [
   { path: 'produtos/novo', component: ProdutosCadastroComponent },
   { path: 'produtos/:id', component: ProdutosCadastroComponent },
   { path: 'produtos', component: ProdutosPesquisaComponent },
-  { path: 'pedidos', component: PedidosPesquisaComponent }
+  { path: 'pedidos', component: PedidosPesquisaComponent },
+  { path: 'pedidos/novo', component: PedidosCadastroComponent }
 ]
 
 @NgModule({
