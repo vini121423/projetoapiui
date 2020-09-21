@@ -1,14 +1,15 @@
 import { Pedido } from './../core/model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import * as moment from 'moment';
 
 
 export class PedidoFiltro {
   pagina = 0;
   itensPorPagina = 10;
   nome: string;
-  datapedidoDe: Date;
-  datapedidoAte: Date;
+  dataPedidoDe: Date;
+  dataPedidoAte: Date;
 }
 
 @Injectable({
@@ -28,19 +29,18 @@ export class PedidosService {
       }
     });
 
+    if (filtro.dataPedidoDe) {
+      params = params.append('dataPedidoDe', moment(filtro.dataPedidoDe).format('YYYY/MM/DD'));
+    }
+
+    if (filtro.dataPedidoAte) {
+      params = params.append('dataPedidoAte', moment(filtro.dataPedidoAte).format('YYYY/MM/DD'));
+    }
+
+
     if (filtro.nome) {
       params = params.append('nome', filtro.nome)
     }
-
-    /*
-    if (filtro.datapedidoDe){
-      params = params.append('datapedidoDe', filtro.datapedidoDe.toString())
-    }
-    if (filtro.datapedidoAte) {
-      params = params.append('datapedidoAte', filtro.datapedidoAte.toString())
-    }
-    */
-
     return this.httpClient.get<any>(`${this.pedidosUrl}`, { params }).toPromise().then(response => {
       const pedidos = response.content;
       const resultado = {
@@ -49,6 +49,15 @@ export class PedidosService {
       }
       return resultado
     });
+  }
+
+  private converterStringParaData(pedidos: Pedido[]) {
+    for (const pedido of pedidos) {
+      if (pedido.datapedido) {
+        pedido.datapedido = moment(pedido.datapedido, 'YYYY-MM-DD').toDate();
+      }
+    }
+
   }
 
 

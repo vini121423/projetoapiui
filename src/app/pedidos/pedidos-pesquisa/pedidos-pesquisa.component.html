@@ -6,15 +6,15 @@
             </div>
             <div class="ui-g-4 ui-fluid">
                 <label>Nome do Cliente:</label>
-                <p-autoComplete [(ngModel)]="filtro.nome" [suggestions]="filtro" (completeMethod)="pesquisar()"></p-autoComplete>
+                <input [(ngModel)]="filtro.nome"  name="nome" />
             </div>
              <div class="ui-g-4 ui-fluid">
                 <label>De:</label>
-                <p-calendar [(ngModel)]="filtro.datapedidoDe" name="datapedidoDe" [locale]="pt" showButtonBar="true" [showIcon]="true" inputId="icon"></p-calendar>
+                <p-calendar [(ngModel)]="filtro.dataPedidoDe" dateFormat="dd/mm/yy" name="dataPedidoDe" [locale]="pt" showButtonBar="true" [showIcon]="true" inputId="icon"></p-calendar>
             </div>
             <div class="ui-g-4 ui-fluid">
                 <label>Até:</label>
-                <p-calendar [(ngModel)]="filtro.datapedidoAte" name="datapedidoAte" [locale]="pt" showButtonBar="true" [showIcon]="true" inputId="icon"></p-calendar>
+                <p-calendar [(ngModel)]="filtro.dataPedidoAte" dateFormat="dd/mm/yy" name="dataPedidoAte" [locale]="pt" showButtonBar="true" [showIcon]="true" inputId="icon"></p-calendar>
             </div>
             <div class="ui-g-12">
                 <button pButton type="submit" label="Pesquisar" icon="pi pi-search" iconPos="right"></button>
