@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ErrorHandlerService } from '../../core/error-handler.service';
+import { MessageService } from 'primeng/api';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PedidosService } from '../pedidos.service';
 
 @Component({
   selector: 'app-pedidos-cadastro',
@@ -7,11 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PedidosCadastroComponent implements OnInit {
  pt: any;
+ pedido = new Pedido();
+ exibirFormularioItem = false;
  
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+              private pedidosService: PedidosService,
+			  private clientesService: ClientesService) { }
 
-  ngOnInit() {
-	  
+  ngOnInit() {  
    this.pt = {
   firstDayOfWeek: 0,
   dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
@@ -23,7 +30,35 @@ export class PedidosCadastroComponent implements OnInit {
   today: 'Hoje',
   clear: 'Limpar'
    }
-
+   
+   const idPedido = this.route.snapshot.params['id'];
+   
+   if(idPedido){
+	   this.carregarPedido(idPedido);
+   }
 }
+ 
 
+  prepararNovoItem(){
+	 this.exibirFormularioItem = true; 
+  }
+  
+  closeForm(){
+	 this.exibirFormularioItem = false; 
+  }
+  
+  carregarPedido(id:number){
+	this.pedidosService.buscarPorId(id).then(pedido => {
+	   this.pedido = pedido;	
+	})
+  }
+  
+  carregarClientes(event){
+	   const query = event.query;
+	   this.clientesService.
+  }
+  
+  get editando(){
+	return Boolean(this.pedido.id);  
+  }
 }

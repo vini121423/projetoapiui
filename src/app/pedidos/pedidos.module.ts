@@ -13,6 +13,7 @@ import { CalendarModule } from 'primeng/calendar';
 import {AutoCompleteModule} from 'primeng/autocomplete';
 import {PanelModule} from 'primeng/panel';
 import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.component';
+import {DialogModule} from 'primeng/dialog';
 
 @NgModule({
   declarations: [PedidosPesquisaComponent, PedidosCadastroComponent],
@@ -30,7 +31,8 @@ import { PedidosCadastroComponent } from './pedidos-cadastro/pedidos-cadastro.co
     CalendarModule,
     DropdownModule,
 	AutoCompleteModule,
-	PanelModule
+	PanelModule,
+	DialogModule
   ]
 })
 export class PedidosModule { }

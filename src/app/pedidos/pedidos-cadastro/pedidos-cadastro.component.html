@@ -6,7 +6,7 @@
             </div>
              <div class="ui-g-6 ui-fluid">
                 <label>Nome do Cliente:</label>
-                <p-autoComplete  [size]="200" [suggestions]="filtro" (completeMethod)="pesquisar()" placeholder="Informe o nome do cliente"></p-autoComplete>
+                <p-autoComplete  [size]="200" [suggestions]="filtro" (completeMethod)="carregarClientes($event)" placeholder="Informe o nome do cliente"></p-autoComplete>
             </div>
              <div class="ui-g-6 ui-fluid">
                 <label>Data Pedido</label>
@@ -22,7 +22,7 @@
     <div class="ui-g">
         <div class="ui-g-12">
 		  <p-panel header="Itens do Pedido">
-		    <button pButton class="ui-button-danger button-dist" label="Adicionar Item" icon="pi pi-plus" iconPos="right"></button>
+		    <button pButton class="ui-button-danger button-dist" label="Adicionar Item" icon="pi pi-plus" iconPos="right" (click)="prepararNovoItem()"></button>
             <p-table>
                 <ng-template pTemplate="header">
                     <tr>
@@ -69,6 +69,31 @@
 	    <button pButton routerLink="/pedidos" class="ui-button-danger" label="Voltar á Pesquisa" icon="pi pi-step-backward" iconPos="left"></button>
 	 </div>
 	</div>
-	
-	
 </div>
+
+<p-dialog header="Produto" [(visible)]="exibirFormularioItem" modal="true" [closable]="false">
+    <div class="container">
+	<form autocomplete="off">
+	   <div class="ui-g-10 ui-fluid">
+                <label>Produto</label>
+                <p-autoComplete  [size]="200" [suggestions]="filtro" (completeMethod)="pesquisar()" placeholder="Informe o nome do produto"></p-autoComplete>
+        </div>
+		<div class="ui-g-3 ui-fluid">
+                <label>Qtde Item</label>
+                <input type="text" pInputText name="qtde"/>
+        </div>
+		<div class="ui-g-3 ui-fluid">
+                <label>Valor Unitário</label>
+                <input type="text" pInputText name="valorunitario"/>
+        </div>
+		<div class="ui-g-3 ui-fluid">
+                <label>Total do item</label>
+                <input type="text" pInputText name="totalitem"/>
+        </div>
+		<div class="ui-g-12">
+		  <button pButton class="ui-button-success button-dist" label="Confirmar" type="sumbmit"></button>
+		  <button pButton class="ui-button-primary button-dist" label="Fechar" type="button" (click)="closeForm()"></button>
+		</div>
+	</form>
+	</div>
+</p-dialog>

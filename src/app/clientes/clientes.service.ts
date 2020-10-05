@@ -61,4 +61,8 @@ export class ClientesService {
     });
 }
 
+   getClientes(nome:string):Promise<any>{
+	   return this.http.get(`${this.clientesUrl}/cli/${nome}`).toPromise();
+   }
+
 }
