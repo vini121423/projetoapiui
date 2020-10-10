@@ -50,17 +50,20 @@ export class PedidosService {
       return resultado
     });
   }
-
   private converterStringParaData(pedidos: Pedido[]) {
     for (const pedido of pedidos) {
       if (pedido.datapedido) {
         pedido.datapedido = moment(pedido.datapedido, 'YYYY-MM-DD').toDate();
       }
     }
-
   }
-
-
+  
+ buscarPorId(id: Number): Promise<Pedido>{
+     return this.httpClient.get<Pedido>(`${this.pedidosUrl}/${id}`).toPromise().then(response =>{
+        const pedido = response;
+        return pedido;
+     });
+ }
   excluir(id: number): Promise<Pedido> {
     return this.httpClient.delete(`${this.pedidosUrl}/${id}`).toPromise().then(() => null);
   }

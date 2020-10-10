@@ -3,6 +3,8 @@ import { ErrorHandlerService } from '../../core/error-handler.service';
 import { MessageService } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PedidosService } from '../pedidos.service';
+import { ClientesService } from '../../clientes/clientes.service';
+import { Pedido } from 'src/app/core/model';
 
 @Component({
   selector: 'app-pedidos-cadastro',
@@ -13,6 +15,7 @@ export class PedidosCadastroComponent implements OnInit {
  pt: any;
  pedido = new Pedido();
  exibirFormularioItem = false;
+ clientes = [];
  
   constructor(private route: ActivatedRoute,
               private pedidosService: PedidosService,
@@ -55,7 +58,9 @@ export class PedidosCadastroComponent implements OnInit {
   
   carregarClientes(event){
 	   const query = event.query;
-	   this.clientesService.
+	   this.clientesService.getClientes(query).then(clientes =>{
+		   this.clientes = clientes;
+	   })
   }
   
   get editando(){

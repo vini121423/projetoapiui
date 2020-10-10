@@ -6,11 +6,11 @@
             </div>
              <div class="ui-g-6 ui-fluid">
                 <label>Nome do Cliente:</label>
-                <p-autoComplete  [size]="200" [suggestions]="filtro" (completeMethod)="carregarClientes($event)" placeholder="Informe o nome do cliente"></p-autoComplete>
+                <p-autoComplete  [size]="200" (completeMethod)="carregarClientes($event)" [minLength]="3" [suggestions]="clientes" placeholder="Informe o nome do cliente" [(ngModel)]="pedido.cliente" field="nome" name="cliente"></p-autoComplete>
             </div>
              <div class="ui-g-6 ui-fluid">
                 <label>Data Pedido</label>
-                <p-calendar [locale]="pt" showButtonBar="true" [showIcon]="true" inputId="icon"></p-calendar>
+                <p-calendar [locale]="pt" [readonlyInput]="true" showButtonBar="true" [showIcon]="true" inputId="icon" [(ngModel)]="pedido.datapedido" name="datapedido"></p-calendar>
             </div>
 			
             <div class="ui-g-12">
@@ -61,7 +61,7 @@
 	<div class="ui-g">
 	  <div class="ui-g-4">
             <label>Total do Pedido</label>
-            <input type="text" pInputText placeholder="Total: R$"/>
+            <input type="text" pInputText placeholder="Total: R$" [(ngModel)]="pedido.totalpedido"/>
       </div>
 			
 	 <div class="ui-g-12">
