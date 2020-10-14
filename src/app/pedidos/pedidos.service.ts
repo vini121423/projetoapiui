@@ -50,6 +50,7 @@ export class PedidosService {
       return resultado
     });
   }
+  
   private converterStringParaData(pedidos: Pedido[]) {
     for (const pedido of pedidos) {
       if (pedido.datapedido) {
@@ -64,7 +65,20 @@ export class PedidosService {
         return pedido;
      });
  }
+ 
   excluir(id: number): Promise<Pedido> {
     return this.httpClient.delete(`${this.pedidosUrl}/${id}`).toPromise().then(() => null);
   }
+  
+   adicionar(pedido: Pedido): Promise<Pedido>{
+    return this.http.post<Pedido>(this.pedidosUrl, pedido).toPromise();
+  }
+
+  atualizar(pedido: Pedido): Promise<Pedido>{
+    return this.http.put<Pedido>(`${this.pedidosUrl}/${pedido.id}`, pedido).toPromise().then(response =>{
+      const pedidoAlterado = response;
+      return pedidoAlterado;
+    })
+  }
+  
 }

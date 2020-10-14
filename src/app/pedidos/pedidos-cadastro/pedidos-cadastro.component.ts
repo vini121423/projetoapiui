@@ -19,7 +19,10 @@ export class PedidosCadastroComponent implements OnInit {
  
   constructor(private route: ActivatedRoute,
               private pedidosService: PedidosService,
-			  private clientesService: ClientesService) { }
+			  private clientesService: ClientesService,
+			  private router:,
+			  private errorHandler: ErrorHandlerService,
+			  private messageService: MessageService) { }
 
   ngOnInit() {  
    this.pt = {
@@ -61,6 +64,28 @@ export class PedidosCadastroComponent implements OnInit {
 	   this.clientesService.getClientes(query).then(clientes =>{
 		   this.clientes = clientes;
 	   })
+  }
+  
+  salvar(form:FormControl){
+	if(this.editando){
+      this.atualizarPedido(form);
+	} else {
+      this.adicionarPedido(form);
+	}		
+  }
+  
+  adicionarPedido(form:FormControl){
+	  this.pedidosService.adicionar(this.pedido).then(pedidoAdicionado =>{
+		 this.messageService.add({severity:'success',detail:'Pedido adicionado com sucesso!'});
+         this.router.navigate(["/pedidos"]);		 
+	  }).catch(erro => this.erroHandler.handle(erro));
+  }
+  
+  atualizarPedido(form:FormControl){
+	this.pedidosService.atualizar(this.pedido).then(pedidoAtualizado =>{
+		this.pedido = pedido;
+		this.messageService.add({severity:'success',detail:'Pedido atualizado com sucesso!'});
+	}).catch(erro => this.erroHandler.handle(erro));
   }
   
   get editando(){

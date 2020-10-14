@@ -29,13 +29,28 @@ export class Pedido {
     datapedido: Date;
     cliente = new Cliente();
     valorpedido: number;
+	itens = new Array<ItemPedido>();
 }
 
 export class Itempedido {
     id: number;
     produto = new Produto();
-    cliente = new Cliente();
     qtdeitem: number;
     valorunitario: number;
     totalitem: number;
+	
+	constructor(
+	id?: number,
+	produto?: Produto,
+	qtdeitem?: number,
+	valorunitario?:number,
+	totalitem?:number) {
+		
+		this.id = id;
+		this.produto = produto;
+		this.qtdeitem = qtdeitem;
+		this.valorunitario = valorunitario;
+		this.totalitem = totalitem;
+		
+	}
 }
