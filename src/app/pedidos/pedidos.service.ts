@@ -37,10 +37,10 @@ export class PedidosService {
       params = params.append('dataPedidoAte', moment(filtro.dataPedidoAte).format('YYYY/MM/DD'));
     }
 
-
     if (filtro.nome) {
       params = params.append('nome', filtro.nome)
     }
+
     return this.httpClient.get<any>(`${this.pedidosUrl}`, { params }).toPromise().then(response => {
       const pedidos = response.content;
       const resultado = {
@@ -50,7 +50,7 @@ export class PedidosService {
       return resultado
     });
   }
-  
+
   private converterStringParaData(pedidos: Pedido[]) {
     for (const pedido of pedidos) {
       if (pedido.datapedido) {
@@ -58,27 +58,27 @@ export class PedidosService {
       }
     }
   }
-  
- buscarPorId(id: Number): Promise<Pedido>{
-     return this.httpClient.get<Pedido>(`${this.pedidosUrl}/${id}`).toPromise().then(response =>{
-        const pedido = response;
-        return pedido;
-     });
- }
- 
+
+  buscarPorId(id: Number): Promise<Pedido> {
+    return this.httpClient.get<Pedido>(`${this.pedidosUrl}/${id}`).toPromise().then(response => {
+      const pedido = response;
+      return pedido;
+    });
+  }
+
   excluir(id: number): Promise<Pedido> {
     return this.httpClient.delete(`${this.pedidosUrl}/${id}`).toPromise().then(() => null);
   }
-  
-   adicionar(pedido: Pedido): Promise<Pedido>{
-    return this.http.post<Pedido>(this.pedidosUrl, pedido).toPromise();
+
+  adicionar(pedido: Pedido): Promise<Pedido> {
+    return this.httpClient.post<Pedido>(this.pedidosUrl, pedido).toPromise();
   }
 
-  atualizar(pedido: Pedido): Promise<Pedido>{
-    return this.http.put<Pedido>(`${this.pedidosUrl}/${pedido.id}`, pedido).toPromise().then(response =>{
+  atualizar(pedido: Pedido): Promise<Pedido> {
+    return this.httpClient.put<Pedido>(`${this.pedidosUrl}/${pedido.id}`, pedido).toPromise().then(response => {
       const pedidoAlterado = response;
       return pedidoAlterado;
     })
   }
-  
+
 }

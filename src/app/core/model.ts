@@ -29,7 +29,7 @@ export class Pedido {
     datapedido: Date;
     cliente = new Cliente();
     valorpedido: number;
-	itens = new Array<ItemPedido>();
+	itens = new Array<Itempedido>();
 }
 
 export class Itempedido {

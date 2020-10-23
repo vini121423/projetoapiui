@@ -5,90 +5,92 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { PedidosService } from '../pedidos.service';
 import { ClientesService } from '../../clientes/clientes.service';
 import { Pedido } from 'src/app/core/model';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-pedidos-cadastro',
   templateUrl: './pedidos-cadastro.component.html',
   styleUrls: ['./pedidos-cadastro.component.css']
 })
+
 export class PedidosCadastroComponent implements OnInit {
- pt: any;
- pedido = new Pedido();
- exibirFormularioItem = false;
- clientes = [];
- 
+  pt: any;
+  pedido = new Pedido();
+  exibirFormularioItem = false;
+  clientes = [];
+
   constructor(private route: ActivatedRoute,
-              private pedidosService: PedidosService,
-			  private clientesService: ClientesService,
-			  private router:,
-			  private errorHandler: ErrorHandlerService,
-			  private messageService: MessageService) { }
+    private pedidosService: PedidosService,
+    private clientesService: ClientesService,
+    private router: Router,
+    private errorHandler: ErrorHandlerService,
+    private messageService: MessageService) { }
 
-  ngOnInit() {  
-   this.pt = {
-  firstDayOfWeek: 0,
-  dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
-  dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
-  dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
-  monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
-    'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
-  monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-  today: 'Hoje',
-  clear: 'Limpar'
-   }
-   
-   const idPedido = this.route.snapshot.params['id'];
-   
-   if(idPedido){
-	   this.carregarPedido(idPedido);
-   }
-}
- 
+  ngOnInit() {
+    this.pt = {
+      firstDayOfWeek: 0,
+      dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+      dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+      dayNamesMin: ['Do', 'Se', 'Te', 'Qu', 'Qu', 'Se', 'Sa'],
+      monthNames: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho',
+        'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+      monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+      today: 'Hoje',
+      clear: 'Limpar'
+    }
 
-  prepararNovoItem(){
-	 this.exibirFormularioItem = true; 
+    const idPedido = this.route.snapshot.params['id'];
+
+    if (idPedido) {
+      this.carregarPedido(idPedido);
+    }
   }
-  
-  closeForm(){
-	 this.exibirFormularioItem = false; 
+
+
+  prepararNovoItem() {
+    this.exibirFormularioItem = true;
   }
-  
-  carregarPedido(id:number){
-	this.pedidosService.buscarPorId(id).then(pedido => {
-	   this.pedido = pedido;	
-	})
+
+  closeForm() {
+    this.exibirFormularioItem = false;
   }
-  
-  carregarClientes(event){
-	   const query = event.query;
-	   this.clientesService.getClientes(query).then(clientes =>{
-		   this.clientes = clientes;
-	   })
+
+  carregarPedido(id: number) {
+    this.pedidosService.buscarPorId(id).then(pedido => {
+      this.pedido = pedido;
+    })
   }
-  
-  salvar(form:FormControl){
-	if(this.editando){
+
+  carregarClientes(event) {
+    const query = event.query;
+    this.clientesService.getClientes(query).then(clientes => {
+      this.clientes = clientes;
+    })
+  }
+
+  salvar(form: FormControl) {
+    if (this.editando) {
       this.atualizarPedido(form);
-	} else {
+    } else {
       this.adicionarPedido(form);
-	}		
+    }
   }
-  
-  adicionarPedido(form:FormControl){
-	  this.pedidosService.adicionar(this.pedido).then(pedidoAdicionado =>{
-		 this.messageService.add({severity:'success',detail:'Pedido adicionado com sucesso!'});
-         this.router.navigate(["/pedidos"]);		 
-	  }).catch(erro => this.erroHandler.handle(erro));
+
+  adicionarPedido(form: FormControl) {
+    this.pedidosService.adicionar(this.pedido).then(pedidoAdicionado => {
+      this.messageService.add({ severity: 'success', detail: 'Pedido adicionado com sucesso!' });
+      this.router.navigate(["/pedidos"]);
+    }).catch(erro => this.errorHandler.handle(erro));
   }
-  
-  atualizarPedido(form:FormControl){
-	this.pedidosService.atualizar(this.pedido).then(pedidoAtualizado =>{
-		this.pedido = pedido;
-		this.messageService.add({severity:'success',detail:'Pedido atualizado com sucesso!'});
-	}).catch(erro => this.erroHandler.handle(erro));
+
+  atualizarPedido(form: FormControl) {
+    this.pedidosService.atualizar(this.pedido).then(pedidoAtualizado => {
+      this.pedido = pedidoAtualizado;
+      this.messageService.add({ severity: 'success', detail: 'Pedido atualizado com sucesso!' });
+    }).catch(erro => this.errorHandler.handle(erro));
   }
-  
-  get editando(){
-	return Boolean(this.pedido.id);  
+
+  get editando() {
+    return Boolean(this.pedido.id);
   }
 }
