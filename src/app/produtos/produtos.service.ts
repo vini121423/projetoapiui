@@ -62,4 +62,8 @@ export class ProdutosService {
     });
 
   }
+  
+  filtrarProdutos(nome:string): Promise<any>{
+	  return this.http.get(`${this.produtosUrl}/produto/${nome}`).toPromise();
+  }
 }

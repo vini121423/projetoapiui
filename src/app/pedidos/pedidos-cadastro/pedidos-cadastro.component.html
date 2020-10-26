@@ -55,7 +55,7 @@
        
     </div>
 	
-	<div class="ui-g">
+	
 	  <div class="ui-g-4">
             <label>Total do Pedido</label>
             <input type="text" pInputText placeholder="Total: R$" [(ngModel)]="pedido.totalpedido"/>
@@ -65,7 +65,7 @@
 	    <button pButton  label="Salvar Pedido" icon="pi pi-save" iconPos="left"></button>
 	    <button pButton routerLink="/pedidos" class="ui-button-danger" label="Voltar á Pesquisa" icon="pi pi-step-backward" iconPos="left"></button>
 	 </div>
-   </div>
+
   </form>
  </div>
 
@@ -74,7 +74,7 @@
 	<form autocomplete="off">
 	   <div class="ui-g-10 ui-fluid">
                 <label>Produto</label>
-                <p-autoComplete  [size]="200" [suggestions]="filtro" (completeMethod)="pesquisar()" placeholder="Informe o nome do produto"></p-autoComplete>
+                <p-autoComplete  [size]="200" [suggestions]="produtos" (completeMethod)="filtrarProdutos($event)" placeholder="Informe o nome do produto" [minLength]="3" [(ngModel)]="pedido.itens.produto" name="nome"></p-autoComplete>
         </div>
 		<div class="ui-g-3 ui-fluid">
                 <label>Qtde Item</label>

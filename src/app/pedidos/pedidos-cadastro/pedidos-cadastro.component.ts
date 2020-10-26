@@ -4,6 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PedidosService } from '../pedidos.service';
 import { ClientesService } from '../../clientes/clientes.service';
+import { ProdutosService } from '../../produtos/produtos.service';
 import { Pedido } from 'src/app/core/model';
 import { FormControl } from '@angular/forms';
 
@@ -18,10 +19,12 @@ export class PedidosCadastroComponent implements OnInit {
   pedido = new Pedido();
   exibirFormularioItem = false;
   clientes = [];
-
+  produtos = [];
+  
   constructor(private route: ActivatedRoute,
     private pedidosService: PedidosService,
     private clientesService: ClientesService,
+	private produtosService: ProdutosService,
     private router: Router,
     private errorHandler: ErrorHandlerService,
     private messageService: MessageService) { }
@@ -66,6 +69,13 @@ export class PedidosCadastroComponent implements OnInit {
     this.clientesService.getClientes(query).then(clientes => {
       this.clientes = clientes;
     })
+  }
+  
+  filtrarProdutos(event){
+	const nome = event.nome;
+    this.produtosService.filtrarProdutos(nome).then(produtos =>{
+	   this.produtos = produtos;
+	})		
   }
 
   salvar(form: FormControl) {
