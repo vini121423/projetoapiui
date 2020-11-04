@@ -6,6 +6,7 @@ import { PedidosService } from '../pedidos.service';
 import { ClientesService } from '../../clientes/clientes.service';
 import { ProdutosService } from '../../produtos/produtos.service';
 import { Pedido } from 'src/app/core/model';
+import { Itempedido } from 'src/app/core/model';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -18,8 +19,10 @@ export class PedidosCadastroComponent implements OnInit {
   pt: any;
   pedido = new Pedido();
   exibirFormularioItem = false;
+  itempedido : Itempedido;
   clientes = [];
   produtos = [];
+  itemIndex: number;
   
   constructor(private route: ActivatedRoute,
     private pedidosService: PedidosService,
@@ -52,6 +55,8 @@ export class PedidosCadastroComponent implements OnInit {
 
   prepararNovoItem() {
     this.exibirFormularioItem = true;
+	this.itempedido = new Itempedido();
+	this.itemIndex = this.pedido.itens.length;
   }
 
   closeForm() {
@@ -72,7 +77,7 @@ export class PedidosCadastroComponent implements OnInit {
   }
   
   filtrarProdutos(event){
-	const nome = event.nome;
+	const nome = event.query;
     this.produtosService.filtrarProdutos(nome).then(produtos =>{
 	   this.produtos = produtos;
 	})		
@@ -102,5 +107,21 @@ export class PedidosCadastroComponent implements OnInit {
 
   get editando() {
     return Boolean(this.pedido.id);
+  }
+  
+  clonarItem(itemPedido: Itempedido) : Itempedido{
+	  return new Itempedido(itemPedido.id,itemPedido.produto,itemPedido.qtdeitem,itemPedido.valorunitario,itemPedido.totalitem);
+  }
+  
+  confirmarItem(form: FormControl){
+	 this.pedido.itens[this.itemIndex] = this.clonarItem(this.itempedido);
+	 this.prepararNovoItem();
+  }
+  
+  prepararEdicaoItem(itemPedido: Itempedido, index:number){
+	  this.itemPedido = this.clonarItem(itemPedido);
+	  this.exibirFormularioItem = true;
+	  index = this.itemIndex;
+	  
   }
 }
