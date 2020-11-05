@@ -10,7 +10,7 @@
             </div>
              <div class="ui-g-6 ui-fluid">
                 <label>Data Pedido</label>
-                <p-calendar [locale]="pt" [readonlyInput]="true" showButtonBar="true" [showIcon]="true" inputId="icon" [(ngModel)]="pedido.datapedido" name="datapedido"></p-calendar>
+                <p-calendar [locale]="pt" [readonlyInput]="true" showButtonBar="true" [showIcon]="true" inputId="icon" [(ngModel)]="pedido.datapedido" name="datapedido" dateFormat="dd/mm/yy"></p-calendar>
             </div>
 		
      
@@ -38,7 +38,7 @@
                         <td class="col-acoes">
                             <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
                                 class="ui-button-success" (click)="prepararEdicaoItem(item,rowIndex)"></a>
-                            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" class="ui-button-danger dist"></button>
+                            <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top" class="ui-button-danger dist" (click)="removerItem(rowIndex)"></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -74,7 +74,7 @@
         </div>
 		<div class="ui-g-3 ui-fluid">
                 <label>Qtde Item</label>
-                <input type="text" pInputText name="qtdeitem" [(ngModel)]="itempedido.qtdeitem" />
+                <input type="text" pInputText name="qtdeitem" [(ngModel)]="itempedido.qtdeitem" (blur)="calcularTotalItem()"/>
         </div>
 		<div class="ui-g-3 ui-fluid">
                 <label>Valor Unitário</label>

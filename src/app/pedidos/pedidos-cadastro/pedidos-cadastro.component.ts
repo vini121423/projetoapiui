@@ -19,15 +19,15 @@ export class PedidosCadastroComponent implements OnInit {
   pt: any;
   pedido = new Pedido();
   exibirFormularioItem = false;
-  itempedido : Itempedido;
+  itempedido: Itempedido;
   clientes = [];
   produtos = [];
   itemIndex: number;
-  
+
   constructor(private route: ActivatedRoute,
     private pedidosService: PedidosService,
     private clientesService: ClientesService,
-	private produtosService: ProdutosService,
+    private produtosService: ProdutosService,
     private router: Router,
     private errorHandler: ErrorHandlerService,
     private messageService: MessageService) { }
@@ -55,8 +55,8 @@ export class PedidosCadastroComponent implements OnInit {
 
   prepararNovoItem() {
     this.exibirFormularioItem = true;
-	this.itempedido = new Itempedido();
-	this.itemIndex = this.pedido.itens.length;
+    this.itempedido = new Itempedido();
+    this.itemIndex = this.pedido.itens.length;
   }
 
   closeForm() {
@@ -75,12 +75,13 @@ export class PedidosCadastroComponent implements OnInit {
       this.clientes = clientes;
     })
   }
-  
-  filtrarProdutos(event){
-	const nome = event.query;
-    this.produtosService.filtrarProdutos(nome).then(produtos =>{
-	   this.produtos = produtos;
-	})		
+
+  filtrarProdutos(event) {
+    const nome = event.query;
+    this.produtosService.filtrarProdutos(nome).then(produtos => {
+      this.produtos = produtos;
+	  this.itempedido.valorunitario = produtos[0].preco;
+    })
   }
 
   salvar(form: FormControl) {
@@ -108,20 +109,28 @@ export class PedidosCadastroComponent implements OnInit {
   get editando() {
     return Boolean(this.pedido.id);
   }
-  
-  clonarItem(itemPedido: Itempedido) : Itempedido{
-	  return new Itempedido(itemPedido.id,itemPedido.produto,itemPedido.qtdeitem,itemPedido.valorunitario,itemPedido.totalitem);
+
+  clonarItem(itemPedido: Itempedido): Itempedido {
+    return new Itempedido(itemPedido.id, itemPedido.produto, itemPedido.qtdeitem, itemPedido.valorunitario, itemPedido.totalitem);
+  }
+
+  confirmarItem(form: FormControl) {
+    this.pedido.itens[this.itemIndex] = this.clonarItem(this.itempedido);
+    this.prepararNovoItem();
+  }
+
+  prepararEdicaoItem(itemPedido: Itempedido, index: number) {
+    this.itempedido = this.clonarItem(itemPedido);
+    this.exibirFormularioItem = true;
+    this.itemIndex = index;
+
   }
   
-  confirmarItem(form: FormControl){
-	 this.pedido.itens[this.itemIndex] = this.clonarItem(this.itempedido);
-	 this.prepararNovoItem();
+  removerItem(index:number){
+	 this.pedido.itens.splice(index,1); 
   }
   
-  prepararEdicaoItem(itemPedido: Itempedido, index:number){
-	  this.itemPedido = this.clonarItem(itemPedido);
-	  this.exibirFormularioItem = true;
-	  index = this.itemIndex;
-	  
+  calcularTotalItem(){
+	 this.itempedido.totalitem = this.itempedido.qtdeitem * this.itempedido.valorunitario; 
   }
 }
