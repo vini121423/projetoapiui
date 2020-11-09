@@ -23,6 +23,7 @@ export class PedidosCadastroComponent implements OnInit {
   clientes = [];
   produtos = [];
   itemIndex: number;
+  pedidoTotal = 0;
 
   constructor(private route: ActivatedRoute,
     private pedidosService: PedidosService,
@@ -80,8 +81,20 @@ export class PedidosCadastroComponent implements OnInit {
     const nome = event.query;
     this.produtosService.filtrarProdutos(nome).then(produtos => {
       this.produtos = produtos;
-	  this.itempedido.valorunitario = produtos[0].preco;
     })
+  }
+  
+  atribuirValorUnitario(){
+	this.itempedido.valorunitario = this.itempedido.produto.preco;
+  }
+  
+  calcularTotalPedido(){
+	  this.pedidoTotal = 0;
+	  
+	  for(let i = 0; i < this.pedido.itens.length; i++){
+		  this.pedidoTotal += this.pedido.itens[i].totalitem;
+	  }
+	  this.pedido.valorpedido = this.pedidoTotal;
   }
 
   salvar(form: FormControl) {
@@ -116,7 +129,8 @@ export class PedidosCadastroComponent implements OnInit {
 
   confirmarItem(form: FormControl) {
     this.pedido.itens[this.itemIndex] = this.clonarItem(this.itempedido);
-    this.prepararNovoItem();
+    this.calcularTotalPedido();
+	this.prepararNovoItem();
   }
 
   prepararEdicaoItem(itemPedido: Itempedido, index: number) {
@@ -128,6 +142,7 @@ export class PedidosCadastroComponent implements OnInit {
   
   removerItem(index:number){
 	 this.pedido.itens.splice(index,1); 
+	 this.calcularTotalPedido();
   }
   
   calcularTotalItem(){

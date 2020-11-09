@@ -55,7 +55,7 @@
 	
 	  <div class="ui-g-4">
             <label>Total do Pedido</label>
-            <input type="text" pInputText placeholder="Total: R$" [(ngModel)]="pedido.totalpedido" name="totalpedido"/>
+            <input type="text" pInputText placeholder="Total: R$" [(ngModel)]="pedido.valorpedido" name="valorpedido"/>
       </div>
 			
 	 <div class="ui-g-12">
@@ -70,7 +70,7 @@
 	<form autocomplete="off" #frmItem="ngForm" (ngSubmit)="confirmarItem(frmItem)">
 	   <div class="ui-g-10 ui-fluid">
                 <label>Produto</label>
-                <p-autoComplete  [size]="200" [suggestions]="produtos" (completeMethod)="filtrarProdutos($event)" placeholder="Informe o nome do produto" [minLength]="3" [(ngModel)]="itempedido.produto" field="nome" name="produtos"></p-autoComplete>
+                <p-autoComplete  [size]="200" [suggestions]="produtos" (completeMethod)="filtrarProdutos($event)" placeholder="Informe o nome do produto" [minLength]="3" [(ngModel)]="itempedido.produto" field="nome" name="produtos" (onSelect)="atribuirValorUnitario()"></p-autoComplete>
         </div>
 		<div class="ui-g-3 ui-fluid">
                 <label>Qtde Item</label>
