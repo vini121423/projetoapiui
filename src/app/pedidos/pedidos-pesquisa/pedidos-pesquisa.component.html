@@ -47,7 +47,7 @@
                         <td class="col-preco">R$ {{pedido.valorpedido | number:'1.2-2'}}</td>
                         <td class="col-acoes">
                             <a pButton icon="pi pi-pencil" pTooltip="Editar" tooltipPosition="top"
-                                class="ui-button-success"></a>
+                                class="ui-button-success" [routerLink]="['/pedidos', pedido.id]"></a>
                             <button pButton icon="pi pi-trash" pTooltip="Excluir" tooltipPosition="top"
                                 (click)="confirmExclusao(pedido)" class="ui-button-danger dist"></button>
                         </td>

@@ -62,6 +62,7 @@ export class PedidosService {
   buscarPorId(id: Number): Promise<Pedido> {
     return this.httpClient.get<Pedido>(`${this.pedidosUrl}/${id}`).toPromise().then(response => {
       const pedido = response;
+	  this.converterStringParaData([pedido]);
       return pedido;
     });
   }
@@ -77,6 +78,7 @@ export class PedidosService {
   atualizar(pedido: Pedido): Promise<Pedido> {
     return this.httpClient.put<Pedido>(`${this.pedidosUrl}/${pedido.id}`, pedido).toPromise().then(response => {
       const pedidoAlterado = response;
+	  this.converterStringParaData([pedidoAlterado]);
       return pedidoAlterado;
     })
   }

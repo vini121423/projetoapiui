@@ -47,7 +47,8 @@ const routes: Routes = [
   { path: 'produtos/:id', component: ProdutosCadastroComponent },
   { path: 'produtos', component: ProdutosPesquisaComponent },
   { path: 'pedidos', component: PedidosPesquisaComponent },
-  { path: 'pedidos/novo', component: PedidosCadastroComponent }
+  { path: 'pedidos/novo', component: PedidosCadastroComponent },
+  { path: 'pedidos/:id', component: PedidosCadastroComponent }
 ]
 
 @NgModule({
